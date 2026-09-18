@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us - ResumePro</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='images/logo.png') }}">
+</head>
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <a href="{{ url_for('home') }}" class="nav-brand">
+
+                <img
+                    src="{{ url_for('static', filename='images/logo.png') }}"
+                    alt="ResumePro Logo"
+                    class="nav-logo"
+                >
+
+                <span>ResumePro</span>
+
+            </a>
+
+            <div class="nav-links">
+
+                <a href="{{ url_for('home') }}">Home</a>
+
+                <a href="{{ url_for('home') }}#features">
+                    Features
+                </a>
+
+                <a href="{{ url_for('resume.templates') }}">
+                    Templates
+                </a>
+
+                <a href="{{ url_for('about') }}" class="active">
+                    About
+                </a>
+
+                <a href="{{ url_for('contact') }}">
+                    Contact
+                </a>
+
+                {% if session.get("userid") %}
+
+                    <a href="{{ url_for('dashboard') }}">
+                        Dashboard
+                    </a>
+
+                    <a href="{{ url_for('auth.logout') }}"
+                       class="nav-button">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{{ url_for('auth.login') }}">
+                        Login
+                    </a>
+
+                    <a href="{{ url_for('auth.signup') }}"
+                       class="nav-button">
+                        Get Started
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= ABOUT HERO ================= -->
+
+    <section class="about-hero">
+
+        <div class="about-hero-content">
+
+            <span class="about-badge">
+                About ResumePro
+            </span>
+
+            <h1>
+                Build Your Resume.
+                <span>Land Your Dream Job.</span>
+            </h1>
+
+            <p>
+                ResumePro is designed to make professional resume
+                creation simple, organized and accessible.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ABOUT CONTENT ================= -->
+
+    <main class="about-page">
+
+        <!-- What is ResumePro -->
+
+        <section class="about-section">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    📄
+                </div>
+
+                <div>
+
+                    <h2>
+                        What is ResumePro?
+                    </h2>
+
+                    <p>
+                        ResumePro is a professional resume-building
+                        platform designed to help students, freshers
+                        and job seekers create attractive and
+                        professional resumes easily.
+                    </p>
+
+                    <p>
+                        Users can enter their personal, educational
+                        and professional information, choose a resume
+                        template and create a well-structured resume.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Our Purpose -->
+
+        <section class="about-section">
+
+            <div class="about-card">
+
+                <div class="about-icon">
+                    🎯
+                </div>
+
+                <div>
+
+                    <h2>
+                        Our Purpose
+                    </h2>
+
+                    <p>
+                        Our purpose is to make resume creation simple,
+                        organized and accessible. ResumePro provides
+                        an easy way to create, edit, preview and
+                        download resumes.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- What You Can Do -->
+
+        <section class="about-section">
+
+            <div class="section-heading">
+
+                <span class="section-badge">
+                    ResumePro Features
+                </span>
+
+                <h2>
+                    What You Can Do
+                </h2>
+
+                <p>
+                    Everything you need to create a professional
+                    resume in one place.
+                </p>
+
+            </div>
+
+
+            <div class="about-features">
+
+                <!-- Feature 1 -->
+
+                <div class="about-feature-card">
+
+                    <div class="feature-icon">
+                        📝
+                    </div>
+
+                    <h3>
+                        Create Resumes
+                    </h3>
+
+                    <p>
+                        Create professional resumes using
+                        simple and easy-to-use forms.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 2 -->
+
+                <div class="about-feature-card">
+
+                    <div class="feature-icon">
+                        🎨
+                    </div>
+
+                    <h3>
+                        Choose Templates
+                    </h3>
+
+                    <p>
+                        Select from different resume designs
+                        and layouts.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 3 -->
+
+                <div class="about-feature-card">
+
+                    <div class="feature-icon">
+                        📜
+                    </div>
+
+                    <h3>
+                        Add Certificates
+                    </h3>
+
+                    <p>
+                        Upload and manage certificates
+                        along with your resume.
+                    </p>
+
+                </div>
+
+
+                <!-- Feature 4 -->
+
+                <div class="about-feature-card">
+
+                    <div class="feature-icon">
+                        📥
+                    </div>
+
+                    <h3>
+                        Download PDF
+                    </h3>
+
+                    <p>
+                        Preview your resume and download
+                        it as a PDF.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Call To Action -->
+
+        <section class="about-cta">
+
+            <div>
+
+                <h2>
+                    Ready to Build Your Resume?
+                </h2>
+
+                <p>
+                    Create your professional resume with ResumePro today.
+                </p>
+
+            </div>
+
+            <a href="{{ url_for('auth.signup') }}"
+               class="about-cta-button">
+                Get Started
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <img
+                    src="{{ url_for('static', filename='images/logo.png') }}"
+                    alt="ResumePro Logo"
+                    class="footer-logo"
+                >
+
+                <div>
+
+                    <h3>
+                        ResumePro
+                    </h3>
+
+                    <p>
+                        Build Your Resume. Land Your Dream Job.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="{{ url_for('home') }}">
+                    Home
+                </a>
+
+                <a href="{{ url_for('about') }}">
+                    About Us
+                </a>
+
+                <a href="{{ url_for('contact') }}">
+                    Contact Us
+                </a>
+
+            </div>
+
+
+            <p class="footer-copy">
+                © 2026 ResumePro. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+</html>

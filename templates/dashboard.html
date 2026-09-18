@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard | ResumePro</title>
+
+    <!-- ResumePro Favicon -->
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <!-- Dashboard CSS -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =====================================================
+         SIDEBAR
+         ===================================================== -->
+
+    <aside class="sidebar" id="sidebar">
+
+        <!-- Brand -->
+        <div class="sidebar-brand">
+
+            <div class="brand-logo">
+                R
+            </div>
+
+            <div class="brand-text">
+                <span>ResumePro</span>
+                <small>Resume Builder</small>
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+
+            <a href="{{ url_for('dashboard') }}"
+               class="nav-item active">
+
+                <span class="nav-icon">⌂</span>
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="#resumes"
+               class="nav-item">
+
+                <span class="nav-icon">▣</span>
+                <span>My Resumes</span>
+
+            </a>
+
+
+            <a href="{{ url_for('resume.templates') }}" class="nav-item">
+    <span class="nav-icon">▦</span>
+    <span>Templates</span>
+</a>
+
+
+            <a href="{{ url_for('profile') }}" class="nav-item">
+    <span class="nav-icon">👤</span>
+    <span>Profile</span>
+</a>
+
+        </nav>
+
+
+        <!-- Bottom Navigation -->
+        <div class="sidebar-bottom">
+
+            <a href="#settings"
+               class="nav-item">
+
+                <span class="nav-icon">⚙</span>
+                <span>Settings</span>
+
+            </a>
+
+
+            <a href="{{ url_for('auth.logout') }}"
+               class="nav-item logout">
+
+                <span class="nav-icon">↪</span>
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
+
+    <main class="main-content">
+
+
+        <!-- =================================================
+             TOP BAR
+             ================================================= -->
+
+        <header class="topbar">
+
+            <!-- Mobile Menu -->
+            <button type="button"
+                    class="menu-button"
+                    id="menuButton"
+                    aria-label="Open navigation menu">
+
+                ☰
+
+            </button>
+
+
+            <!-- Page Title -->
+            <div class="topbar-title">
+
+                <span>Dashboard</span>
+
+            </div>
+
+
+            <!-- User Area -->
+            <div class="user-area">
+
+                <div class="user-avatar">
+
+                    {{ session["fullname"][0]|upper }}
+
+                </div>
+
+
+                <div class="user-details">
+
+                    <strong>
+                        {{ session["fullname"] }}
+                    </strong>
+
+                    <small>
+                        {{ session["email"] }}
+                    </small>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             DASHBOARD CONTENT
+             ================================================= -->
+
+        <section class="dashboard-content">
+
+
+            <!-- =================================================
+                 FLASH MESSAGES
+                 ================================================= -->
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    <div class="flash-container">
+
+                        {% for category, message in messages %}
+
+                            <div class="flash-message {{ category }}">
+
+                                <span>
+                                    {% if category == "success" %}
+                                        ✓
+                                    {% else %}
+                                        !
+                                    {% endif %}
+                                </span>
+
+                                <span>
+                                    {{ message }}
+                                </span>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            {% endwith %}
+
+
+
+            <!-- =================================================
+                 WELCOME SECTION
+                 ================================================= -->
+
+            <div class="welcome-section">
+
+                <div class="welcome-content">
+
+                    <p class="welcome-label">
+                        YOUR WORKSPACE
+                    </p>
+
+
+                    <h1>
+                        Welcome back,
+                        {{ session["fullname"].split()[0] }} 👋
+                    </h1>
+
+
+                    <p class="welcome-description">
+                        Create a resume that tells your professional story
+                        and helps you stand out to employers.
+                    </p>
+
+                </div>
+
+
+                <a href="{{ url_for('resume.create') }}"
+                   class="btn-primary">
+
+                    <span class="btn-icon">+</span>
+
+                    <span>Create New Resume</span>
+
+                </a>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 STATS
+                 ================================================= -->
+
+            <div class="stats-grid">
+
+
+                <!-- My Resumes -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ▣
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            My Resumes
+                        </span>
+
+                        <strong>
+                            {{ resumes|length }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Templates -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ◈
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            Templates
+                        </span>
+
+                        <strong>
+                            3
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Completed -->
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        ✓
+                    </div>
+
+
+                    <div class="stat-content">
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong>
+                            {{ completed_count }}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RESUMES SECTION
+                 ================================================= -->
+
+            <div class="section-heading"
+                 id="resumes">
+
+                <div>
+
+                    <h2>
+                        Your Resumes
+                    </h2>
+
+                    <p>
+                        Manage and continue working on your resumes.
+                    </p>
+
+                </div>
+
+
+                {% if resumes %}
+
+                    <a href="#resumes"
+                       class="view-all">
+
+                        {{ resumes|length }}
+
+                        {% if resumes|length == 1 %}
+                            Resume
+                        {% else %}
+                            Resumes
+                        {% endif %}
+
+                        <span>→</span>
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RESUME LIST
+                 ================================================= -->
+
+            {% if resumes %}
+
+                <div class="resume-grid">
+
+
+                    {% for resume in resumes %}
+
+                        <article class="resume-card">
+
+
+                            <!-- Resume Preview -->
+                            <div class="resume-card-preview">
+
+                                <div class="mini-resume">
+
+                                    <div class="mini-resume-header">
+
+                                        <span></span>
+                                        <span></span>
+
+                                    </div>
+
+                                    <div class="mini-line large"></div>
+
+                                    <div class="mini-line medium"></div>
+
+                                    <div class="mini-section"></div>
+
+                                    <div class="mini-line"></div>
+
+                                    <div class="mini-line"></div>
+
+                                    <div class="mini-line short"></div>
+
+                                    <div class="mini-section"></div>
+
+                                    <div class="mini-line"></div>
+
+                                    <div class="mini-line medium"></div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- Resume Information -->
+                            <div class="resume-card-content">
+
+                                <h3>
+                                    {{ resume.resume_name or "My Resume" }}
+                                </h3>
+
+
+                                <p class="resume-date">
+
+                                    {% if resume.updated_at %}
+
+                                        Last updated:
+                                        {{ resume.updated_at.strftime("%d %b %Y") }}
+
+                                    {% else %}
+
+                                        Recently created
+
+                                    {% endif %}
+
+                                </p>
+
+
+
+                                <!-- Resume Status -->
+                                <div class="resume-status">
+
+                                    {% if resume.fullname
+                                          and resume.email
+                                          and resume.summary %}
+
+                                        <span class="status-dot completed"></span>
+
+                                        <span>
+                                            Completed
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="status-dot draft"></span>
+
+                                        <span>
+                                            Draft
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+
+                                <!-- Actions -->
+                                <div class="resume-actions">
+
+
+                                    <!-- Edit -->
+                                    <a href="{{ url_for(
+                                        'resume.builder',
+                                        resumeid=resume.resumeid
+                                    ) }}"
+                                       class="resume-action primary">
+
+                                        Edit
+
+                                    </a>
+
+
+
+                                    <!-- Preview -->
+                                    <a href="{{ url_for(
+                                        'resume.preview',
+                                        resumeid=resume.resumeid
+                                    ) }}"
+                                       class="resume-action secondary">
+
+                                        Preview
+
+                                    </a>
+
+
+
+                                    <!-- Delete -->
+                                    <form method="POST"
+                                          action="{{ url_for(
+                                              'resume.delete',
+                                              resumeid=resume.resumeid
+                                          ) }}"
+                                          class="delete-form"
+                                          onsubmit="return confirm(
+                                              'Are you sure you want to delete this resume?'
+                                          );">
+
+                                        <button type="submit"
+                                                class="resume-action danger">
+
+                                            Delete
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        </article>
+
+                    {% endfor %}
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- =================================================
+                     EMPTY STATE
+                     ================================================= -->
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ✦
+                    </div>
+
+
+                    <h3>
+                        Create your first resume
+                    </h3>
+
+
+                    <p>
+                        Start with your personal details and build
+                        a professional resume step by step.
+                    </p>
+
+
+                    <a href="{{ url_for('resume.create') }}"
+                       class="btn-primary">
+
+                        <span class="btn-icon">+</span>
+
+                        <span>
+                            Create New Resume
+                        </span>
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- =================================================
+                 QUICK INFORMATION
+                 ================================================= -->
+
+            <div class="dashboard-info"
+                 id="templates">
+
+
+                <!-- Templates Information -->
+                <div class="info-card">
+
+                    <div class="info-icon">
+                        ◈
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Professional Templates
+                        </h3>
+
+                        <p>
+                            Choose from multiple professional resume
+                            designs and create a resume that matches
+                            your career goals.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Profile Information -->
+                <div class="info-card"
+                     id="profile">
+
+                    <div class="info-icon">
+                        ✓
+                    </div>
+
+
+                    <div>
+
+                        <h3>
+                            Build Your Career Profile
+                        </h3>
+
+                        <p>
+                            Keep your professional information ready
+                            and create job-ready resumes faster.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SETTINGS ANCHOR
+                 ================================================= -->
+
+            <div id="settings"></div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     DASHBOARD JAVASCRIPT
+     ========================================================= -->
+
+<script src="{{ url_for(
+    'static',
+    filename='js/dashboard.js'
+) }}"></script>
+
+</body>
+
+</html>

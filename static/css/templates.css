@@ -1,0 +1,979 @@
+/* =========================================================
+   ResumePro - Templates Page
+   ========================================================= */
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+    background: #f7f8fc;
+    color: #172033;
+    min-height: 100vh;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.templates-header {
+    width: 100%;
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    background: #ffffff;
+    border-bottom: 1px solid #e8eaf0;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+
+    text-decoration: none;
+    color: #172033;
+}
+
+.brand-mark {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 11px;
+
+    background: linear-gradient(
+        135deg,
+        #6d5dfc,
+        #377dff
+    );
+
+    color: #ffffff;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    box-shadow:
+        0 6px 18px rgba(82, 92, 220, 0.25);
+}
+
+.brand-name {
+    font-size: 22px;
+    font-weight: 750;
+    letter-spacing: -0.5px;
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+
+    padding: 0 18px;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #ffffff;
+    color: #30394d;
+
+    border: 1px solid #dfe3eb;
+}
+
+.btn-secondary:hover {
+    border-color: #bfc6d5;
+
+    box-shadow:
+        0 5px 14px rgba(24, 32, 52, 0.08);
+}
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
+.templates-page {
+    width: min(1240px, 92%);
+
+    margin: 0 auto;
+
+    padding: 65px 0 80px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.templates-hero {
+    max-width: 760px;
+
+    margin: 0 auto 50px;
+
+    text-align: center;
+}
+
+.hero-label {
+    display: inline-block;
+
+    margin-bottom: 15px;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color: #5b61d6;
+}
+
+.templates-hero h1 {
+    margin-bottom: 16px;
+
+    font-size: clamp(32px, 4vw, 48px);
+
+    line-height: 1.12;
+
+    letter-spacing: -1.5px;
+
+    color: #151d30;
+}
+
+.templates-hero p {
+    max-width: 650px;
+
+    margin: 0 auto;
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    color: #697386;
+}
+
+
+/* =========================================================
+   TEMPLATE GRID
+   ========================================================= */
+
+.template-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 26px;
+
+    align-items: stretch;
+}
+
+
+/* =========================================================
+   TEMPLATE CARD
+   ========================================================= */
+
+.template-card {
+    background: #ffffff;
+
+    border: 1px solid #e6e9f0;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 28px rgba(26, 35, 55, 0.06);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.template-card:hover {
+    transform: translateY(-7px);
+
+    border-color: #d5d9e7;
+
+    box-shadow:
+        0 18px 40px rgba(26, 35, 55, 0.12);
+}
+
+
+/* =========================================================
+   TEMPLATE PREVIEW AREA
+   ========================================================= */
+
+.template-preview {
+    height: 420px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f3f5fa,
+            #eef1f8
+        );
+
+    border-bottom: 1px solid #e7e9ef;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   MINI RESUME
+   ========================================================= */
+
+.mini-resume {
+    width: 100%;
+    max-width: 270px;
+    min-height: 350px;
+
+    padding: 25px 22px;
+
+    background: #ffffff;
+
+    border-radius: 3px;
+
+    box-shadow:
+        0 12px 28px rgba(27, 38, 62, 0.14);
+
+    overflow: hidden;
+
+    transform-origin: center;
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.template-card:hover .mini-resume {
+    transform: scale(1.025);
+
+    box-shadow:
+        0 18px 35px rgba(27, 38, 62, 0.18);
+}
+
+
+/* =========================================================
+   MINI RESUME TEXT
+   ========================================================= */
+
+.mini-name {
+    font-size: 18px;
+    font-weight: 800;
+
+    line-height: 1.15;
+
+    color: #182238;
+}
+
+.mini-title {
+    margin-top: 5px;
+
+    font-size: 9px;
+    font-weight: 600;
+
+    color: #737c8f;
+}
+
+.mini-contact {
+    margin-top: 9px;
+
+    font-size: 6.5px;
+
+    line-height: 1.5;
+
+    color: #8b93a3;
+}
+
+.mini-section {
+    margin-top: 19px;
+}
+
+.mini-heading {
+    margin-bottom: 7px;
+
+    font-size: 7px;
+    font-weight: 800;
+
+    letter-spacing: 0.9px;
+
+    color: #4d5ed8;
+}
+
+.mini-text {
+    font-size: 6.5px;
+    line-height: 1.55;
+
+    color: #70798b;
+}
+
+.mini-item {
+    font-size: 7px;
+    font-weight: 700;
+
+    color: #273148;
+}
+
+.mini-small {
+    margin-top: 3px;
+
+    font-size: 6px;
+
+    color: #8a92a2;
+}
+
+
+/* =========================================================
+   MINI SKILLS
+   ========================================================= */
+
+.mini-skills {
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 5px;
+}
+
+.mini-skills span {
+    padding: 4px 6px;
+
+    border-radius: 4px;
+
+    background: #eef1ff;
+
+    font-size: 5.5px;
+    font-weight: 700;
+
+    color: #515ec7;
+}
+
+
+/* =========================================================
+   PROFESSIONAL PREVIEW
+   ========================================================= */
+
+.professional-preview {
+    border-top: 5px solid #5d63d8;
+}
+
+.professional-preview .mini-header {
+    padding-bottom: 4px;
+}
+
+.mini-line {
+    width: 100%;
+    height: 2px;
+
+    margin-top: 10px;
+
+    border-radius: 3px;
+}
+
+.mini-line.blue {
+    background: #5d63d8;
+}
+
+
+/* =========================================================
+   MODERN PREVIEW
+   ========================================================= */
+
+.modern-preview {
+    padding: 0;
+
+    border: 1px solid #e2e5ed;
+}
+
+.modern-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 24px 20px 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #eef1ff,
+            #f5f6ff
+        );
+}
+
+.modern-top .mini-name {
+    font-size: 17px;
+}
+
+.modern-avatar {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6d5dfc,
+            #377dff
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.modern-preview .modern-contact {
+    padding: 8px 20px;
+
+    font-size: 6px;
+
+    color: #8a91a0;
+
+    border-bottom: 1px solid #eceef3;
+}
+
+.modern-preview .mini-section {
+    margin: 16px 20px 0;
+}
+
+.modern-heading {
+    color: #377dff;
+}
+
+.modern-skills span {
+    background: #e9f2ff;
+    color: #3974c8;
+}
+
+
+/* =========================================================
+   CREATIVE PREVIEW
+   ========================================================= */
+
+.creative-preview {
+    padding: 0;
+
+    border: 1px solid #e2e4ea;
+}
+
+.creative-top {
+    padding: 25px 22px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1efff,
+            #eef5ff
+        );
+}
+
+.creative-top .mini-name {
+    font-size: 19px;
+}
+
+.creative-accent {
+    width: 45px;
+    height: 4px;
+
+    margin-top: 10px;
+
+    border-radius: 5px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #6d5dfc,
+            #377dff
+        );
+}
+
+.creative-contact {
+    margin-top: 9px;
+
+    font-size: 6px;
+
+    color: #81899a;
+}
+
+.creative-body {
+    padding: 0 22px 22px;
+}
+
+.creative-heading {
+    color: #685bd8;
+}
+
+.creative-skills span {
+    background: #f0edff;
+    color: #665bd0;
+}
+
+
+/* =========================================================
+   TEMPLATE CARD CONTENT
+   ========================================================= */
+
+.template-card-content {
+    min-height: 180px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 24px;
+}
+
+.template-card-content h2 {
+    margin-bottom: 8px;
+
+    font-size: 20px;
+
+    color: #172033;
+}
+
+.template-card-content p {
+    font-size: 13px;
+    line-height: 1.65;
+
+    color: #727b8d;
+}
+
+
+/* =========================================================
+   TEMPLATE BUTTON
+   ========================================================= */
+
+.template-select-btn {
+    width: 100%;
+
+    min-height: 44px;
+
+    border: none;
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #665cf1,
+            #397df7
+        );
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 7px 18px rgba(83, 91, 215, 0.20);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        filter 0.2s ease;
+}
+
+.template-select-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(83, 91, 215, 0.28);
+
+    filter: brightness(1.02);
+}
+
+.template-select-btn:active {
+    transform: translateY(0);
+}
+
+.template-select-btn:focus-visible {
+    outline: 3px solid rgba(76, 101, 230, 0.25);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   INFORMATION CARD
+   ========================================================= */
+
+.template-info {
+    max-width: 900px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    margin: 48px auto 0;
+
+    padding: 22px 24px;
+
+    background: #ffffff;
+
+    border: 1px solid #e4e7ef;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 7px 22px rgba(25, 34, 53, 0.04);
+}
+
+.info-icon {
+    flex: 0 0 auto;
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eaf8f1;
+
+    color: #20865a;
+
+    font-size: 16px;
+    font-weight: 800;
+}
+
+.template-info h3 {
+    margin-bottom: 5px;
+
+    font-size: 15px;
+
+    color: #20293d;
+}
+
+.template-info p {
+    font-size: 13px;
+    line-height: 1.6;
+
+    color: #737c8e;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+
+    .templates-header {
+        padding: 0 4%;
+    }
+
+    .templates-page {
+        width: 92%;
+    }
+
+    .template-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+    .template-card:last-child {
+        grid-column: 1 / -1;
+
+        max-width: 470px;
+
+        width: 100%;
+
+        justify-self: center;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .templates-header {
+        min-height: 68px;
+
+        padding: 0 20px;
+    }
+
+    .brand-name {
+        font-size: 19px;
+    }
+
+    .brand-mark {
+        width: 34px;
+        height: 34px;
+
+        border-radius: 10px;
+
+        font-size: 19px;
+    }
+
+    .btn {
+        min-height: 38px;
+
+        padding: 0 13px;
+
+        font-size: 12px;
+    }
+
+    .templates-page {
+        width: 92%;
+
+        padding: 45px 0 60px;
+    }
+
+    .templates-hero {
+        margin-bottom: 35px;
+    }
+
+    .templates-hero h1 {
+        font-size: 32px;
+
+        letter-spacing: -1px;
+    }
+
+    .templates-hero p {
+        font-size: 14px;
+    }
+
+    .template-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+    .template-card:last-child {
+        grid-column: auto;
+
+        max-width: none;
+    }
+
+    .template-preview {
+        height: 400px;
+    }
+
+    .template-card-content {
+        min-height: 175px;
+
+        padding: 22px;
+    }
+
+    .template-info {
+        margin-top: 35px;
+
+        padding: 18px;
+
+        gap: 12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+
+    .templates-header {
+        padding: 0 14px;
+    }
+
+    .brand {
+        gap: 8px;
+    }
+
+    .brand-name {
+        font-size: 17px;
+    }
+
+    .brand-mark {
+        width: 32px;
+        height: 32px;
+
+        font-size: 17px;
+    }
+
+    .header-actions .btn {
+        padding: 0 10px;
+    }
+
+    .templates-page {
+        width: 94%;
+    }
+
+    .templates-hero h1 {
+        font-size: 28px;
+    }
+
+    .template-preview {
+        height: 370px;
+
+        padding: 20px;
+    }
+
+    .mini-resume {
+        max-width: 250px;
+    }
+
+    .template-card-content h2 {
+        font-size: 18px;
+    }
+
+    .template-card-content p {
+        font-size: 12px;
+    }
+
+    .template-info {
+        align-items: flex-start;
+    }
+
+    .info-icon {
+        width: 30px;
+        height: 30px;
+
+        font-size: 14px;
+    }
+
+    .template-info h3 {
+        font-size: 14px;
+    }
+
+    .template-info p {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+
+    .templates-header,
+    .template-info {
+        display: none;
+    }
+
+    .templates-page {
+        width: 100%;
+        padding: 0;
+    }
+
+    .templates-hero {
+        display: none;
+    }
+
+    .template-grid {
+        display: block;
+    }
+
+    .template-card {
+        display: none;
+    }
+}

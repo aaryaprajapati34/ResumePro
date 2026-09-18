@@ -1,0 +1,742 @@
+/* =========================================================
+   ResumePro - Authentication Pages
+   Login & Signup
+   ========================================================= */
+
+/* =========================
+   RESET
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+}
+
+
+/* =========================
+   MAIN AUTH CONTAINER
+   ========================= */
+
+.auth-container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.auth-intro {
+    width: 48%;
+    min-height: 100vh;
+    padding: 42px 58px;
+    background:
+        radial-gradient(
+            circle at 15% 85%,
+            rgba(99, 102, 241, 0.28),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #172554 0%,
+            #272d72 48%,
+            #4338ca 100%
+        );
+    color: white;
+    position: relative;
+    overflow: hidden;
+}
+
+
+/* Decorative circles */
+
+.auth-intro::before,
+.auth-intro::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    pointer-events: none;
+}
+
+.auth-intro::before {
+    width: 430px;
+    height: 430px;
+    right: -190px;
+    top: -150px;
+}
+
+.auth-intro::after {
+    width: 330px;
+    height: 330px;
+    left: -175px;
+    bottom: -145px;
+}
+
+
+/* =========================================================
+   BRAND / LOGO
+   ========================================================= */
+
+/*
+   IMPORTANT:
+   The generated ResumePro logo is a complete image.
+   It must NOT be allowed to use its original huge size.
+*/
+
+.brand {
+    position: relative;
+    z-index: 5;
+
+    display: flex;
+    align-items: center;
+
+    width: fit-content;
+    max-width: 100%;
+
+    text-decoration: none;
+    color: white;
+}
+
+
+/* Link wrapper used by login/signup HTML */
+
+.brand-link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    max-width: 100%;
+    text-decoration: none;
+}
+
+
+/* Actual full ResumePro logo */
+
+.brand-logo-image {
+    display: block;
+
+    /* Main fix for the huge logo */
+    width: 250px;
+    max-width: 100%;
+    height: auto;
+
+    object-fit: contain;
+    object-position: left center;
+
+    /* Prevent accidental stretching */
+    flex-shrink: 1;
+}
+
+
+/*
+   Old R logo.
+   Kept here so older dashboard/auth markup
+   does not break.
+*/
+
+.brand-logo,
+.mobile-brand .brand-logo {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: white;
+    color: #4338ca;
+
+    border-radius: 12px;
+
+    font-size: 22px;
+    font-weight: 800;
+
+    flex-shrink: 0;
+}
+
+
+/* =========================================================
+   LEFT INTRO CONTENT
+   ========================================================= */
+
+.intro-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    max-width: 520px;
+
+    margin-top: 125px;
+}
+
+.small-title {
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 700;
+
+    opacity: 0.75;
+
+    margin-bottom: 18px;
+}
+
+.intro-content h1 {
+    font-size: clamp(40px, 4vw, 60px);
+    line-height: 1.08;
+
+    margin-bottom: 24px;
+
+    color: #ffffff;
+}
+
+.intro-content h1 span {
+    display: block;
+    color: #c7d2fe;
+}
+
+.intro-text {
+    max-width: 430px;
+
+    font-size: 17px;
+    line-height: 1.7;
+
+    color: #e0e7ff;
+
+    margin-bottom: 34px;
+}
+
+
+/* Official ResumePro tagline */
+
+.intro-tagline {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #c7d2fe;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.feature {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin: 18px 0;
+}
+
+.feature span {
+    width: 27px;
+    height: 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    color: #c7d2fe;
+
+    font-weight: bold;
+}
+
+.feature p {
+    color: #eef2ff;
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   RIGHT SIDE
+   ========================================================= */
+
+.auth-form-section {
+    width: 52%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 50px 65px;
+
+    background: #ffffff;
+
+    overflow-y: auto;
+}
+
+
+/* Form wrapper */
+
+.auth-form {
+    width: 100%;
+    max-width: 470px;
+}
+
+
+/* Heading */
+
+.auth-form h2 {
+    font-size: 34px;
+    line-height: 1.2;
+
+    margin-bottom: 10px;
+
+    color: #111827;
+}
+
+
+/* Subtitle */
+
+.subtitle {
+    color: #6b7280;
+
+    margin-bottom: 32px;
+
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   MOBILE BRAND
+   ========================================================= */
+
+.mobile-brand {
+    display: none;
+}
+
+.mobile-logo-image {
+    display: block;
+
+    width: 190px;
+    max-width: 100%;
+    height: auto;
+
+    object-fit: contain;
+}
+
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    color: #374151;
+}
+
+.input-group input {
+    width: 100%;
+    height: 52px;
+
+    padding: 0 16px;
+
+    border: 1px solid #dbe1ea;
+    border-radius: 10px;
+
+    background: #f9fafb;
+
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.input-group input::placeholder {
+    color: #9ca3af;
+}
+
+.input-group input:hover {
+    border-color: #c7ceda;
+}
+
+.input-group input:focus {
+    background: #ffffff;
+
+    border-color: #6366f1;
+
+    box-shadow:
+        0 0 0 4px rgba(99, 102, 241, 0.10);
+}
+
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.auth-button {
+    width: 100%;
+    min-height: 54px;
+
+    margin-top: 8px;
+
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #4f46e5,
+            #6366f1
+        );
+
+    color: white;
+
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        filter 0.25s ease;
+
+    box-shadow:
+        0 8px 20px rgba(79, 70, 229, 0.20);
+}
+
+.auth-button span {
+    font-size: 21px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.auth-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.03);
+
+    box-shadow:
+        0 12px 25px rgba(79, 70, 229, 0.28);
+}
+
+.auth-button:hover span {
+    transform: translateX(4px);
+}
+
+.auth-button:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   ALERT MESSAGES
+   ========================================================= */
+
+.alert {
+    padding: 12px 15px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.alert.error {
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    border: 1px solid #fecaca;
+}
+
+.alert.success {
+    background: #f0fdf4;
+
+    color: #15803d;
+
+    border: 1px solid #bbf7d0;
+}
+
+
+/* =========================================================
+   LOGIN / SIGNUP SWITCH
+   ========================================================= */
+
+.switch-page {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #6b7280;
+
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.switch-page a {
+    color: #4f46e5;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+.switch-page a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .auth-intro {
+        width: 45%;
+        padding: 38px 42px;
+    }
+
+    .auth-form-section {
+        width: 55%;
+        padding: 40px;
+    }
+
+    .brand-logo-image {
+        width: 220px;
+    }
+
+    .intro-content {
+        margin-top: 100px;
+    }
+
+    .intro-content h1 {
+        font-size: 42px;
+    }
+
+    .intro-text {
+        font-size: 15px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE / SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+
+    .auth-container {
+        min-height: 100vh;
+        display: block;
+
+        overflow: visible;
+    }
+
+    /* Hide desktop left panel */
+
+    .auth-intro {
+        display: none;
+    }
+
+    /* Full width form */
+
+    .auth-form-section {
+        width: 100%;
+        min-height: 100vh;
+
+        padding: 35px 28px;
+
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+    }
+
+    .auth-form {
+        max-width: 470px;
+        margin: 0 auto;
+    }
+
+    /* Show mobile logo */
+
+    .mobile-brand {
+        display: flex;
+
+        align-items: center;
+
+        width: 100%;
+
+        margin-bottom: 45px;
+    }
+
+    .mobile-brand .brand-link {
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .mobile-logo-image {
+        width: 185px;
+        max-width: 80%;
+    }
+
+    .auth-form h2 {
+        font-size: 30px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .auth-form-section {
+        padding: 28px 20px;
+    }
+
+    .mobile-brand {
+        margin-bottom: 38px;
+    }
+
+    .mobile-logo-image {
+        width: 175px;
+    }
+
+    .auth-form h2 {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        margin-bottom: 28px;
+    }
+
+    .input-group {
+        margin-bottom: 18px;
+    }
+
+    .input-group input {
+        height: 50px;
+    }
+
+    .auth-button {
+        min-height: 52px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .auth-form-section {
+        padding: 24px 16px;
+    }
+
+    .mobile-logo-image {
+        width: 160px;
+    }
+
+    .mobile-brand {
+        margin-bottom: 32px;
+    }
+
+    .auth-form h2 {
+        font-size: 26px;
+    }
+
+    .subtitle {
+        font-size: 13px;
+    }
+
+    .input-group label {
+        font-size: 13px;
+    }
+
+    .input-group input {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+.auth-button:focus-visible,
+.input-group input:focus-visible,
+.switch-page a:focus-visible,
+.brand-link:focus-visible {
+    outline: 3px solid rgba(99, 102, 241, 0.35);
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .auth-button,
+    .auth-button span,
+    .input-group input {
+        transition: none;
+    }
+}
