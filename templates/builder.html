@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Resume Builder | ResumePro</title>
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo.png') }}"
+    >
+
+    <!-- Main CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <!-- Builder CSS -->
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/builder.css') }}"
+    >
+</head>
+
+<body>
+
+<!-- =====================================================
+     TOP HEADER
+===================================================== -->
+
+<header class="builder-header">
+
+    <div class="builder-brand">
+
+        <a href="{{ url_for('dashboard') }}">
+
+            <span class="brand-icon">R</span>
+
+            <span class="brand-name">
+                ResumePro
+            </span>
+
+        </a>
+
+    </div>
+
+
+    <div class="builder-header-actions">
+
+        <a
+            href="{{ url_for('resume.preview', resumeid=resume.resumeid) }}"
+            class="preview-btn"
+            target="_blank"
+        >
+            Preview
+        </a>
+
+        <a
+            href="{{ url_for('dashboard') }}"
+            class="back-btn"
+        >
+            Dashboard
+        </a>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     FLASH MESSAGES
+===================================================== -->
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+
+    {% if messages %}
+
+        <div class="flash-container">
+
+            {% for category, message in messages %}
+
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% endif %}
+
+{% endwith %}
+
+
+<!-- =====================================================
+     MAIN BUILDER
+===================================================== -->
+
+<main class="builder-page">
+
+
+    <!-- =================================================
+         LEFT SIDE
+    ================================================== -->
+
+    <section class="builder-form-container">
+
+
+        <!-- PAGE TITLE -->
+
+        <div class="builder-title">
+
+            <h1>
+                Build Your Resume
+            </h1>
+
+            <p>
+                Fill in your details and create a professional resume.
+            </p>
+
+        </div>
+
+
+        <!-- =================================================
+             RESUME FORM
+        ================================================== -->
+
+        <form
+            id="resumeForm"
+            action="{{ url_for('resume.builder', resumeid=resume.resumeid) }}"
+            method="POST"
+            enctype="multipart/form-data"
+            class="resume-form"
+        >
+
+
+            <!-- =================================================
+                 RESUME INFORMATION
+            ================================================= -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Resume Information
+                    </h2>
+
+                    <p>
+                        Give your resume a name.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="resume_name">
+                        Resume Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="resume_name"
+                        name="resume_name"
+                        placeholder="e.g. Software Developer Resume"
+                        value="{{ resume.resume_name or '' }}"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PROFILE PHOTO
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Profile Photo
+                    </h2>
+
+                    <p>
+                        Upload a professional profile photo.
+                    </p>
+
+                </div>
+
+
+                <div class="profile-upload-box">
+
+                    <div class="profile-photo-preview">
+
+                        {% if resume.profile_image %}
+
+                            <div
+                                class="preview-photo-wrapper"
+                                id="profilePhotoWrapper"
+                            >
+
+                                <img
+                                    id="previewPhoto"
+                                    src="{{ url_for('uploaded_file', filename=resume.profile_image) }}"
+                                    alt="Profile Photo"
+                                >
+
+                            </div>
+
+                        {% else %}
+
+                            <div
+                                class="preview-photo-wrapper"
+                                id="profilePhotoWrapper"
+                                style="display: none;"
+                            >
+
+                                <img
+                                    id="previewPhoto"
+                                    src=""
+                                    alt="Profile Photo"
+                                >
+
+                            </div>
+
+
+                            <div
+                                class="photo-placeholder"
+                                id="photoPlaceholder"
+                            >
+                                <span>Photo</span>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="profile-upload-content">
+
+                        <label for="profile_image">
+                            Choose Profile Photo
+                        </label>
+
+                        <input
+                            type="file"
+                            id="profile_image"
+                            name="profile_image"
+                            accept=".jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp"
+                        >
+
+                        <small>
+                            JPG, JPEG, PNG or WEBP
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PERSONAL INFORMATION
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Personal Information
+                    </h2>
+
+                    <p>
+                        Add your basic contact details.
+                    </p>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="fullname">
+                            Full Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullname"
+                            name="fullname"
+                            placeholder="Your full name"
+                            value="{{ resume.fullname or '' }}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="you@example.com"
+                            value="{{ resume.email or '' }}"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            type="tel"
+                            id="phone"
+                            name="phone"
+                            placeholder="+91 98765 43210"
+                            value="{{ resume.phone or '' }}"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="address">
+                            Address
+                        </label>
+
+                        <input
+                            type="text"
+                            id="address"
+                            name="address"
+                            placeholder="City, State, Country"
+                            value="{{ resume.address or '' }}"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PROFESSIONAL SUMMARY
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Professional Summary
+                    </h2>
+
+                    <p>
+                        Write a short introduction about yourself.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="summary">
+                        Summary
+                    </label>
+
+                    <textarea
+                        id="summary"
+                        name="summary"
+                        rows="6"
+                        placeholder="Write a short professional summary..."
+                    >{{ resume.summary or '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 EDUCATION
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Education
+                        </h2>
+
+                        <p>
+                            Add your educational qualifications.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="add-entry-btn"
+                        onclick="addEducation()"
+                    >
+                        + Add Education
+                    </button>
+
+                </div>
+
+
+                <div id="educationContainer">
+
+                    <div class="repeat-item education-item">
+
+                        <div class="repeat-item-header">
+
+                            <h3>
+                                Education
+                                <span class="entry-number">1</span>
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                class="remove-entry-btn"
+                                onclick="removeEntry(this)"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Degree / Course
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="education-degree"
+                                    placeholder="B.Sc. Computer Science"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Institution
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="education-institution"
+                                    placeholder="College / University"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Start Year
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="education-start"
+                                    placeholder="2024"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    End Year
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="education-end"
+                                    placeholder="2027"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Grade / CGPA
+                            </label>
+
+                            <input
+                                type="text"
+                                class="education-grade"
+                                placeholder="CGPA: 8.5"
+                            >
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <textarea
+                    id="education"
+                    name="education"
+                    style="display: none;"
+                >{{ resume.education or '' }}</textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 EXPERIENCE
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Experience
+                        </h2>
+
+                        <p>
+                            Add internships, jobs or professional experience.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="add-entry-btn"
+                        onclick="addExperience()"
+                    >
+                        + Add Experience
+                    </button>
+
+                </div>
+
+
+                <div id="experienceContainer">
+
+                    <div class="repeat-item experience-item">
+
+                        <div class="repeat-item-header">
+
+                            <h3>
+                                Experience
+                                <span class="entry-number">1</span>
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                class="remove-entry-btn"
+                                onclick="removeEntry(this)"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Job Title
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="experience-title"
+                                    placeholder="Software Developer Intern"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    Company
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="experience-company"
+                                    placeholder="ABC Company"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-row">
+
+                            <div class="form-group">
+
+                                <label>
+                                    Start Date
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="experience-start"
+                                    placeholder="June 2026"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label>
+                                    End Date
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="experience-end"
+                                    placeholder="August 2026"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Description
+                            </label>
+
+                            <textarea
+                                class="experience-description"
+                                rows="4"
+                                placeholder="Describe your responsibilities and achievements..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <textarea
+                    id="experience"
+                    name="experience"
+                    style="display: none;"
+                >{{ resume.experience or '' }}</textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 SKILLS
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Skills
+                    </h2>
+
+                    <p>
+                        Add your technical and professional skills.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        name="skills"
+                        rows="5"
+                        placeholder="Python, Flask, MySQL, HTML, CSS, JavaScript, Git"
+                    >{{ resume.skills or '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 PROJECTS
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <h2>
+                            Projects
+                        </h2>
+
+                        <p>
+                            Showcase your academic or personal projects.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="add-entry-btn"
+                        onclick="addProject()"
+                    >
+                        + Add Project
+                    </button>
+
+                </div>
+
+
+                <div id="projectsContainer">
+
+                    <div class="repeat-item project-item">
+
+                        <div class="repeat-item-header">
+
+                            <h3>
+                                Project
+                                <span class="entry-number">1</span>
+                            </h3>
+
+
+                            <button
+                                type="button"
+                                class="remove-entry-btn"
+                                onclick="removeEntry(this)"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Project Name
+                            </label>
+
+                            <input
+                                type="text"
+                                class="project-name"
+                                placeholder="ResumePro - Resume Builder"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Technologies
+                            </label>
+
+                            <input
+                                type="text"
+                                class="project-tech"
+                                placeholder="Python, Flask, MySQL, HTML, CSS, JavaScript"
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label>
+                                Description
+                            </label>
+
+                            <textarea
+                                class="project-description"
+                                rows="4"
+                                placeholder="Describe your project..."
+                            ></textarea>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <textarea
+                    id="projects"
+                    name="projects"
+                    style="display: none;"
+                >{{ resume.projects or '' }}</textarea>
+
+            </div>
+
+
+            <!-- =================================================
+                 CERTIFICATIONS
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Certifications
+                    </h2>
+
+                    <p>
+                        Add certification details to your resume.
+                    </p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="certifications">
+                        Certification Details
+                    </label>
+
+                    <textarea
+                        id="certifications"
+                        name="certifications"
+                        rows="5"
+                        placeholder="Python Programming Certificate - XYZ Institute&#10;Web Development Certificate - ABC Academy"
+                    >{{ resume.certifications or '' }}</textarea>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 TEMPLATE SELECTION
+            ================================================== -->
+
+            <div class="form-section">
+
+                <div class="section-heading">
+
+                    <h2>
+                        Resume Template
+                    </h2>
+
+                    <p>
+                        Choose the design for your resume.
+                    </p>
+
+                </div>
+
+
+                <div class="template-selection">
+
+
+                    <!-- TEMPLATE 1 -->
+
+                    <label class="template-option">
+
+                        <input
+                            type="radio"
+                            name="template"
+                            value="template1"
+                            {% if resume.template == 'template1' or not resume.template %}
+                                checked
+                            {% endif %}
+                        >
+
+
+                        <div class="template-card">
+
+                            <div class="template-mini template-professional">
+
+                                <div class="mini-header"></div>
+
+                                <div class="mini-line"></div>
+
+                                <div class="mini-line short"></div>
+
+                                <div class="mini-section"></div>
+
+                                <div class="mini-lines"></div>
+
+                            </div>
+
+
+                            <strong>
+                                Professional
+                            </strong>
+
+                            <span>
+                                Clean and professional
+                            </span>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- TEMPLATE 2 -->
+
+                    <label class="template-option">
+
+                        <input
+                            type="radio"
+                            name="template"
+                            value="template2"
+                            {% if resume.template == 'template2' %}
+                                checked
+                            {% endif %}
+                        >
+
+
+                        <div class="template-card">
+
+                            <div class="template-mini template-modern">
+
+                                <div class="mini-sidebar"></div>
+
+                                <div class="mini-content">
+
+                                    <div class="mini-header"></div>
+
+                                    <div class="mini-line"></div>
+
+                                    <div class="mini-line short"></div>
+
+                                </div>
+
+                            </div>
+
+
+                            <strong>
+                                Modern
+                            </strong>
+
+                            <span>
+                                Stylish modern layout
+                            </span>
+
+                        </div>
+
+                    </label>
+
+
+                    <!-- TEMPLATE 3 -->
+
+                    <label class="template-option">
+
+                        <input
+                            type="radio"
+                            name="template"
+                            value="template3"
+                            {% if resume.template == 'template3' %}
+                                checked
+                            {% endif %}
+                        >
+
+
+                        <div class="template-card">
+
+                            <div class="template-mini template-minimal">
+
+                                <div class="mini-header"></div>
+
+                                <div class="mini-line"></div>
+
+                                <div class="mini-line"></div>
+
+                                <div class="mini-line short"></div>
+
+                                <div class="mini-section"></div>
+
+                            </div>
+
+
+                            <strong>
+                                Minimal
+                            </strong>
+
+                            <span>
+                                Simple and elegant
+                            </span>
+
+                        </div>
+
+                    </label>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+                 FORM ACTIONS
+            ================================================== -->
+
+            <div class="form-actions">
+
+                <button
+                    type="submit"
+                    class="save-resume-btn"
+                >
+                    Save Resume
+                </button>
+
+
+                <a
+                    href="{{ url_for('resume.preview', resumeid=resume.resumeid) }}"
+                    class="preview-resume-btn"
+                    target="_blank"
+                >
+                    Preview Resume
+                </a>
+
+            </div>
+
+        </form>
+
+
+        <!-- =================================================
+             CERTIFICATES
+        ================================================== -->
+
+        <section class="certificate-section">
+
+
+            <div class="section-heading">
+
+                <h2>
+                    Certificates
+                </h2>
+
+                <p>
+                    Upload certificates that you want to keep with this resume.
+                </p>
+
+            </div>
+
+
+            <!-- CERTIFICATE UPLOAD FORM -->
+
+            <form
+                action="{{ url_for('resume.upload_certificate', resumeid=resume.resumeid) }}"
+                method="POST"
+                enctype="multipart/form-data"
+                class="certificate-form"
+            >
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="certificate_name">
+                            Certificate Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="certificate_name"
+                            name="certificate_name"
+                            placeholder="e.g. Python Programming"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="issuing_organization">
+                            Issuing Organization
+                        </label>
+
+                        <input
+                            type="text"
+                            id="issuing_organization"
+                            name="issuing_organization"
+                            placeholder="e.g. Coursera"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+
+                    <div class="form-group">
+
+                        <label for="certificate_date">
+                            Certificate Date
+                        </label>
+
+                        <input
+                            type="date"
+                            id="certificate_date"
+                            name="certificate_date"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="certificate_file">
+                            Certificate File
+                        </label>
+
+                        <input
+                            type="file"
+                            id="certificate_file"
+                            name="certificate_file"
+                            accept=".jpg,.jpeg,.png,.webp,.pdf,application/pdf,image/jpeg,image/png,image/webp"
+                            required
+                        >
+
+                        <small>
+                            JPG, JPEG, PNG, WEBP or PDF
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- IMMEDIATE CERTIFICATE PREVIEW -->
+
+                <div
+                    id="certificateUploadPreview"
+                    class="certificate-upload-preview"
+                    style="display: none;"
+                >
+
+                    <p>
+                        Selected Certificate
+                    </p>
+
+
+                    <img
+                        id="certificatePreviewImage"
+                        src=""
+                        alt="Certificate Preview"
+                        style="display: none;"
+                    >
+
+
+                    <div
+                        id="certificatePreviewPdf"
+                        style="display: none;"
+                    >
+                        PDF certificate selected.
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="upload-certificate-btn"
+                >
+                    Upload Certificate
+                </button>
+
+            </form>
+
+
+            <!-- =================================================
+                 UPLOADED CERTIFICATES
+            ================================================== -->
+
+            {% if certificates %}
+
+                <div class="uploaded-certificates">
+
+                    <h3>
+                        Uploaded Certificates
+                    </h3>
+
+
+                    <div class="certificate-list">
+
+                        {% for certificate in certificates %}
+
+                            <div class="certificate-card">
+
+
+                                <!-- CERTIFICATE INFORMATION -->
+
+                                <div class="certificate-info">
+
+                                    <h4>
+                                        {{ certificate.certificate_name }}
+                                    </h4>
+
+
+                                    {% if certificate.issuing_organization %}
+
+                                        <p>
+
+                                            <strong>
+                                                Organization:
+                                            </strong>
+
+                                            {{ certificate.issuing_organization }}
+
+                                        </p>
+
+                                    {% endif %}
+
+
+                                    {% if certificate.certificate_date %}
+
+                                        <p>
+
+                                            <strong>
+                                                Date:
+                                            </strong>
+
+                                            {{ certificate.certificate_date }}
+
+                                        </p>
+
+                                    {% endif %}
+
+
+                                    {% if certificate.file_type %}
+
+                                        <p>
+
+                                            <strong>
+                                                File:
+                                            </strong>
+
+                                            {{ certificate.file_type|upper }}
+
+                                        </p>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <!-- CERTIFICATE IMAGE -->
+
+                                {% if certificate.file_path %}
+
+                                    {% set file_type = certificate.file_type|lower %}
+
+                                    {% if file_type in [
+                                        'jpg',
+                                        'jpeg',
+                                        'png',
+                                        'webp',
+                                        'image/jpeg',
+                                        'image/png',
+                                        'image/webp'
+                                    ] %}
+
+                                        <div class="certificate-thumbnail">
+
+                                            <img
+                                                src="{{ url_for('uploaded_file', filename=certificate.file_path) }}"
+                                                alt="{{ certificate.certificate_name }}"
+                                            >
+
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endif %}
+
+
+                                <!-- CERTIFICATE ACTIONS -->
+
+                                <div class="certificate-actions">
+
+                                    {% if certificate.file_path %}
+
+                                        <a
+                                            href="{{ url_for('uploaded_file', filename=certificate.file_path) }}"
+                                            target="_blank"
+                                            class="view-certificate-btn"
+                                        >
+                                            View
+                                        </a>
+
+                                    {% endif %}
+
+
+                                    <form
+                                        action="{{ url_for(
+                                            'resume.delete_certificate_route',
+                                            certificateid=certificate.certificateid,
+                                            resumeid=resume.resumeid
+                                        ) }}"
+                                        method="POST"
+                                        onsubmit="return confirm('Are you sure you want to delete this certificate?');"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="delete-certificate-btn"
+                                        >
+                                            Delete
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            {% else %}
+
+                <div class="no-certificates">
+
+                    <p>
+                        No certificates uploaded yet.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </section>
+
+    </section>
+
+
+    <!-- =================================================
+         RIGHT SIDE - LIVE PREVIEW
+    ================================================== -->
+
+    <aside class="builder-preview-container">
+
+
+        <div class="preview-header">
+
+            <div>
+
+                <h2>
+                    Live Preview
+                </h2>
+
+                <p>
+                    Your resume preview
+                </p>
+
+            </div>
+
+
+            <a
+                href="{{ url_for('resume.preview', resumeid=resume.resumeid) }}"
+                target="_blank"
+                class="open-preview-btn"
+            >
+                Open Full Preview
+            </a>
+
+        </div>
+
+
+        <!-- =================================================
+             RESUME PAPER
+        ================================================== -->
+
+        <div
+            class="resume-paper"
+            id="resumePreview"
+            data-template="{{ resume.template or 'template1' }}"
+        >
+
+
+            <!-- PROFILE HEADER -->
+
+            <div class="resume-header">
+
+                <div class="resume-header-info">
+
+                    <h1 id="previewFullname">
+                        {{ resume.fullname or 'Your Name' }}
+                    </h1>
+
+                    <p id="previewEmail">
+                        {{ resume.email or 'you@example.com' }}
+                    </p>
+
+                    <p id="previewPhone">
+                        {{ resume.phone or '+91 98765 43210' }}
+                    </p>
+
+                    <p id="previewAddress">
+                        {{ resume.address or 'City, State, Country' }}
+                    </p>
+
+                </div>
+
+
+                <!-- LIVE PROFILE PHOTO -->
+
+                {% if resume.profile_image %}
+
+                    <div
+                        class="preview-photo-wrapper"
+                        id="livePhotoWrapper"
+                    >
+
+                        <img
+                            id="previewPhotoLive"
+                            src="{{ url_for('uploaded_file', filename=resume.profile_image) }}"
+                            alt="Profile Photo"
+                        >
+
+                    </div>
+
+                {% else %}
+
+                    <div
+                        class="preview-photo-wrapper"
+                        id="livePhotoWrapper"
+                        style="display: none;"
+                    >
+
+                        <img
+                            id="previewPhotoLive"
+                            src=""
+                            alt="Profile Photo"
+                        >
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div
+                class="resume-preview-section"
+                id="previewSummarySection"
+            >
+
+                <h3>
+                    Professional Summary
+                </h3>
+
+                <p id="previewSummary">
+                    {{ resume.summary or 'Your professional summary will appear here.' }}
+                </p>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div
+                class="resume-preview-section"
+                id="previewEducationSection"
+            >
+
+                <h3>
+                    Education
+                </h3>
+
+
+                <div id="previewEducation">
+
+                    {% if resume.education %}
+
+                        {{ resume.education
+                            | replace('\n', '<br>')
+                            | safe
+                        }}
+
+                    {% else %}
+
+                        Your education details will appear here.
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div
+                class="resume-preview-section"
+                id="previewExperienceSection"
+            >
+
+                <h3>
+                    Experience
+                </h3>
+
+
+                <div id="previewExperience">
+
+                    {% if resume.experience %}
+
+                        {{ resume.experience
+                            | replace('\n', '<br>')
+                            | safe
+                        }}
+
+                    {% else %}
+
+                        Your experience details will appear here.
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div
+                class="resume-preview-section"
+                id="previewSkillsSection"
+            >
+
+                <h3>
+                    Skills
+                </h3>
+
+                <p id="previewSkills">
+                    {{ resume.skills or 'Your skills will appear here.' }}
+                </p>
+
+            </div>
+
+
+            <!-- PROJECTS -->
+
+            <div
+                class="resume-preview-section"
+                id="previewProjectsSection"
+            >
+
+                <h3>
+                    Projects
+                </h3>
+
+
+                <div id="previewProjects">
+
+                    {% if resume.projects %}
+
+                        {{ resume.projects
+                            | replace('\n', '<br>')
+                            | safe
+                        }}
+
+                    {% else %}
+
+                        Your projects will appear here.
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- CERTIFICATIONS -->
+
+            <div
+                class="resume-preview-section"
+                id="previewCertificationsSection"
+            >
+
+                <h3>
+                    Certifications
+                </h3>
+
+                <p id="previewCertifications">
+                    {{ resume.certifications or 'Your certifications will appear here.' }}
+                </p>
+
+            </div>
+
+
+            <!-- UPLOADED CERTIFICATES -->
+
+            {% if certificates %}
+
+                <div
+                    class="resume-preview-section certificate-preview-section"
+                >
+
+                    <h3>
+                        Certificates
+                    </h3>
+
+
+                    <div class="preview-certificates">
+
+                        {% for certificate in certificates %}
+
+                            <div class="preview-certificate-item">
+
+
+                                <!-- CERTIFICATE DETAILS -->
+
+                                <div class="preview-certificate-info">
+
+                                    <strong>
+                                        {{ certificate.certificate_name }}
+                                    </strong>
+
+
+                                    {% if certificate.issuing_organization %}
+
+                                        <span>
+                                            {{ certificate.issuing_organization }}
+                                        </span>
+
+                                    {% endif %}
+
+
+                                    {% if certificate.certificate_date %}
+
+                                        <span>
+                                            {{ certificate.certificate_date }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </div>
+
+
+                                <!-- CERTIFICATE FILE -->
+
+                                {% if certificate.file_path %}
+
+                                    {% set file_type = certificate.file_type|lower %}
+
+                                    {% if file_type in [
+                                        'jpg',
+                                        'jpeg',
+                                        'png',
+                                        'webp',
+                                        'image/jpeg',
+                                        'image/png',
+                                        'image/webp'
+                                    ] %}
+
+                                        <div class="preview-certificate-image">
+
+                                            <img
+                                                src="{{ url_for('uploaded_file', filename=certificate.file_path) }}"
+                                                alt="{{ certificate.certificate_name }}"
+                                            >
+
+                                        </div>
+
+                                    {% else %}
+
+                                        <div class="preview-certificate-file">
+
+                                            <a
+                                                href="{{ url_for('uploaded_file', filename=certificate.file_path) }}"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                            >
+                                                View Certificate PDF
+                                            </a>
+
+                                        </div>
+
+                                    {% endif %}
+
+                                {% endif %}
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </aside>
+
+</main>
+
+
+<!-- =====================================================
+     BUILDER JAVASCRIPT
+===================================================== -->
+
+<script
+    src="{{ url_for('static', filename='js/builder.js') }}"
+></script>
+
+
+<!-- =====================================================
+     CERTIFICATE PREVIEW
+===================================================== -->
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const certificateFile =
+        document.getElementById("certificate_file");
+
+    const certificateUploadPreview =
+        document.getElementById("certificateUploadPreview");
+
+    const certificatePreviewImage =
+        document.getElementById("certificatePreviewImage");
+
+    const certificatePreviewPdf =
+        document.getElementById("certificatePreviewPdf");
+
+
+    if (
+        !certificateFile ||
+        !certificateUploadPreview ||
+        !certificatePreviewImage ||
+        !certificatePreviewPdf
+    ) {
+        return;
+    }
+
+
+    certificateFile.addEventListener("change", function () {
+
+        const file = this.files && this.files[0];
+
+
+        if (!file) {
+
+            certificateUploadPreview.style.display = "none";
+
+            certificatePreviewImage.style.display = "none";
+
+            certificatePreviewPdf.style.display = "none";
+
+            certificatePreviewImage.src = "";
+
+            return;
+        }
+
+
+        certificateUploadPreview.style.display = "block";
+
+
+        /*
+         * IMAGE CERTIFICATE
+         */
+
+        if (file.type.startsWith("image/")) {
+
+            const imageURL =
+                URL.createObjectURL(file);
+
+
+            certificatePreviewImage.src =
+                imageURL;
+
+            certificatePreviewImage.style.display =
+                "block";
+
+            certificatePreviewPdf.style.display =
+                "none";
+
+        }
+
+
+        /*
+         * PDF CERTIFICATE
+         */
+
+        else if (file.type === "application/pdf") {
+
+            certificatePreviewImage.style.display =
+                "none";
+
+            certificatePreviewImage.src =
+                "";
+
+            certificatePreviewPdf.style.display =
+                "block";
+
+        }
+
+
+        /*
+         * OTHER FILE TYPE
+         */
+
+        else {
+
+            certificatePreviewImage.style.display =
+                "none";
+
+            certificatePreviewImage.src =
+                "";
+
+            certificatePreviewPdf.style.display =
+                "none";
+
+            certificateUploadPreview.style.display =
+                "none";
+
+        }
+
+    });
+
+});
+
+</script>
+</body>
+</html>

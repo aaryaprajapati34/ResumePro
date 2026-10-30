@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>My Profile | ResumePro</title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo.png') }}"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+    <style>
+
+        .profile-page {
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: #f6f8fc;
+        }
+
+        .profile-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .profile-header {
+            margin-bottom: 30px;
+        }
+
+        .profile-header h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            color: #172033;
+        }
+
+        .profile-header p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 15px;
+        }
+
+        .profile-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 32px;
+            box-shadow: 0 10px 35px rgba(30, 41, 59, 0.08);
+            border: 1px solid #e8ebf2;
+        }
+
+        .profile-top {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid #edf0f5;
+            margin-bottom: 28px;
+        }
+
+        .profile-avatar {
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(
+                135deg,
+                #6d5dfc,
+                #4f8cff
+            );
+            color: white;
+            font-size: 30px;
+            font-weight: 700;
+        }
+
+        .profile-name {
+            margin: 0 0 5px;
+            font-size: 24px;
+            color: #172033;
+        }
+
+        .profile-email {
+            margin: 0;
+            color: #6b7280;
+        }
+
+        .profile-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .detail-box {
+            padding: 20px;
+            background: #f8f9fc;
+            border-radius: 14px;
+            border: 1px solid #edf0f5;
+        }
+
+        .detail-label {
+            display: block;
+            font-size: 13px;
+            color: #7b8190;
+            margin-bottom: 7px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #202637;
+            word-break: break-word;
+        }
+
+        .profile-actions {
+            margin-top: 30px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .profile-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.2s ease;
+        }
+
+        .profile-btn-primary {
+            background: #5b5cf0;
+            color: white;
+        }
+
+        .profile-btn-primary:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
+        }
+
+        .profile-btn-secondary {
+            background: #eef1f7;
+            color: #303747;
+        }
+
+        .profile-btn-secondary:hover {
+            background: #e4e8f0;
+        }
+
+        @media (max-width: 650px) {
+
+            .profile-page {
+                padding: 25px 15px;
+            }
+
+            .profile-card {
+                padding: 22px;
+            }
+
+            .profile-top {
+                align-items: flex-start;
+            }
+
+            .profile-details {
+                grid-template-columns: 1fr;
+            }
+
+            .profile-header h1 {
+                font-size: 27px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <main class="profile-page">
+
+        <div class="profile-container">
+
+            <div class="profile-header">
+
+                <h1>My Profile</h1>
+
+                <p>
+                    View your ResumePro account information.
+                </p>
+
+            </div>
+
+
+            <section class="profile-card">
+
+                <div class="profile-top">
+
+                    <div class="profile-avatar">
+
+                        {{ session.get("fullname", "U")[0]|upper }}
+
+                    </div>
+
+
+                    <div>
+
+                        <h2 class="profile-name">
+
+                            {{ session.get("fullname", "User") }}
+
+                        </h2>
+
+                        <p class="profile-email">
+
+                            {{ session.get("email", "") }}
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-details">
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Full Name
+                        </span>
+
+                        <span class="detail-value">
+
+                            {{ session.get("fullname", "Not available") }}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Email Address
+                        </span>
+
+                        <span class="detail-value">
+
+                            {{ session.get("email", "Not available") }}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Account Status
+                        </span>
+
+                        <span class="detail-value">
+                            Active
+                        </span>
+
+                    </div>
+
+
+                    <div class="detail-box">
+
+                        <span class="detail-label">
+                            Platform
+                        </span>
+
+                        <span class="detail-value">
+                            ResumePro
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-actions">
+
+                    <a
+                        href="{{ url_for('dashboard') }}"
+                        class="profile-btn profile-btn-primary"
+                    >
+                        Back to Dashboard
+                    </a>
+
+
+                    <a
+                        href="{{ url_for('auth.logout') }}"
+                        class="profile-btn profile-btn-secondary"
+                    >
+                        Logout
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</body>
+
+</html>

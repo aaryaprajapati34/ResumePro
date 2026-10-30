@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | ResumePro</title>
+
+    <!-- ResumePro Favicon -->
+    <link rel="icon"
+          type="image/png"
+          href="{{ url_for('static', filename='images/logo.png') }}">
+
+    <!-- Authentication Styles -->
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/auth.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="auth-container">
+
+
+    <!-- =====================================================
+         LEFT SIDE
+    ====================================================== -->
+
+    <div class="auth-intro">
+
+
+        <!-- ResumePro Brand -->
+        <div class="brand">
+
+            <a href="{{ url_for('home') }}"
+               class="brand-link">
+
+                <img
+                    src="{{ url_for('static', filename='images/logo.png') }}"
+                    alt="ResumePro"
+                    class="brand-logo-image">
+
+            </a>
+
+        </div>
+
+
+
+        <!-- Intro Content -->
+        <div class="intro-content">
+
+            <p class="small-title">
+                WELCOME BACK
+            </p>
+
+
+            <h1>
+                Your career.
+                <span>Your story.</span>
+            </h1>
+
+
+            <p class="intro-text">
+                Continue creating a professional resume that
+                represents your skills, experience and achievements.
+            </p>
+
+
+
+            <!-- Feature 1 -->
+            <div class="feature">
+
+                <span>✓</span>
+
+                <p>
+                    Access your saved resumes
+                </p>
+
+            </div>
+
+
+
+            <!-- Feature 2 -->
+            <div class="feature">
+
+                <span>✓</span>
+
+                <p>
+                    Edit your resume anytime
+                </p>
+
+            </div>
+
+
+
+            <!-- Feature 3 -->
+            <div class="feature">
+
+                <span>✓</span>
+
+                <p>
+                    Build your career profile
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Tagline -->
+        <div class="intro-tagline">
+            Build Your Resume. Land Your Dream Job.
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         RIGHT SIDE
+    ====================================================== -->
+
+    <div class="auth-form-section">
+
+
+        <div class="auth-form">
+
+
+            <!-- Mobile Brand -->
+            <div class="mobile-brand">
+
+                <a href="{{ url_for('home') }}"
+                   class="brand-link">
+
+                    <img
+                        src="{{ url_for('static', filename='images/logo.png') }}"
+                        alt="ResumePro"
+                        class="mobile-logo-image">
+
+                </a>
+
+            </div>
+
+
+
+            <!-- Heading -->
+            <h2>
+                Welcome back
+            </h2>
+
+
+            <p class="subtitle">
+                Login to continue to your ResumePro account.
+            </p>
+
+
+
+            <!-- =================================================
+                 FLASH MESSAGES
+            ================================================== -->
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="alert {{ category }}"
+                             role="alert">
+
+                            {{ message }}
+
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+
+
+            <!-- =================================================
+                 LOGIN FORM
+            ================================================== -->
+
+            <form method="POST"
+                  action="{{ url_for('auth.login') }}">
+
+
+                <!-- Email -->
+                <div class="input-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
+
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        inputmode="email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Password -->
+                <div class="input-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+
+                <!-- Login Button -->
+                <button type="submit"
+                        class="auth-button">
+
+                    <span>
+                        Login
+                    </span>
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+            </form>
+
+
+
+            <!-- Create Account -->
+            <p class="switch-page">
+
+                Don't have an account?
+
+                <a href="{{ url_for('auth.signup') }}">
+                    Create Account
+                </a>
+
+            </p>
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

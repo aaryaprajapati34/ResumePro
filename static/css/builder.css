@@ -1,0 +1,2049 @@
+/* =========================================================
+   ResumePro - Builder Page
+   builder.css
+   ========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: #f5f7fb;
+    color: #172033;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* =========================================================
+   TOP HEADER
+   ========================================================= */
+
+.builder-header {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background: rgba(255, 255, 255, 0.97);
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+/* =========================================================
+   BRAND
+   ========================================================= */
+
+.builder-brand a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-icon {
+    width: 39px;
+    height: 39px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #6d5dfc, #4f8cff);
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 800;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.22);
+}
+
+.brand-name {
+    color: #172033;
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
+
+.builder-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.preview-btn,
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 9px 16px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.preview-btn {
+    background: #eef2ff;
+    color: #4f46e5;
+    border: 1px solid #dfe4ff;
+}
+
+.preview-btn:hover {
+    background: #e4e8ff;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(79, 70, 229, 0.12);
+}
+
+.back-btn {
+    background: #ffffff;
+    color: #4b5563;
+    border: 1px solid #dfe3eb;
+}
+
+.back-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd2df;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(20, 25, 40, 0.06);
+}
+
+/* =========================================================
+   FLASH MESSAGES
+   ========================================================= */
+
+.flash-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 18px auto 0;
+    padding: 0 28px;
+}
+
+.flash-message {
+    padding: 13px 17px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid transparent;
+}
+
+.flash-message.success {
+    background: #ecfdf3;
+    color: #166534;
+    border-color: #bbf7d0;
+}
+
+.flash-message.error {
+    background: #fef2f2;
+    color: #991b1b;
+    border-color: #fecaca;
+}
+
+/* =========================================================
+   MAIN BUILDER
+   ========================================================= */
+
+.builder-page {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 28px;
+    display: grid;
+    grid-template-columns:
+        minmax(500px, 1fr)
+        minmax(430px, 0.85fr);
+    gap: 26px;
+    align-items: start;
+}
+
+/* =========================================================
+   LEFT FORM CONTAINER
+   ========================================================= */
+
+.builder-form-container {
+    min-width: 0;
+    background: #ffffff;
+    border: 1px solid #e4e7ed;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(20, 25, 40, 0.05);
+    overflow: hidden;
+}
+
+/* =========================================================
+   BUILDER TITLE
+   ========================================================= */
+
+.builder-title {
+    padding: 30px;
+    background: #ffffff;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.builder-title h1 {
+    margin-bottom: 8px;
+    color: #172033;
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.builder-title p {
+    color: #737b8c;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.resume-form {
+    width: 100%;
+}
+
+/* =========================================================
+   FORM SECTIONS
+   ========================================================= */
+
+.form-section {
+    padding: 30px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.form-section:last-child {
+    border-bottom: none;
+}
+
+/* =========================================================
+   SECTION HEADING
+   ========================================================= */
+
+.section-heading {
+    margin-bottom: 22px;
+}
+
+.section-heading h2 {
+    margin-bottom: 6px;
+    color: #172033;
+    font-size: 18px;
+    line-height: 1.35;
+    font-weight: 750;
+}
+
+.section-heading p {
+    color: #7b8291;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   FORM ROW
+   ========================================================= */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+/* =========================================================
+   FORM GROUP
+   ========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-row .form-group {
+    min-width: 0;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label,
+.profile-upload-content label {
+    display: block;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* =========================================================
+   INPUTS
+   ========================================================= */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 13px 14px;
+    background: #fbfcfe;
+    border: 1px solid #dce1e9;
+    border-radius: 9px;
+    color: #172033;
+    font-size: 14px;
+    line-height: 1.45;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #a0a7b4;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+    border-color: #c9cfda;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    background: #ffffff;
+    border-color: #5b5ff0;
+    box-shadow: 0 0 0 3px rgba(91, 95, 240, 0.10);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 115px;
+    line-height: 1.65;
+}
+
+select {
+    cursor: pointer;
+}
+
+/* =========================================================
+   FILE INPUT
+   ========================================================= */
+
+input[type="file"] {
+    padding: 10px;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button {
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 7px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+    background: #e1e6ff;
+}
+
+/* =========================================================
+   HELP TEXT
+   ========================================================= */
+
+.form-group small,
+.profile-upload-content small {
+    display: block;
+    margin-top: 7px;
+    color: #8a91a0;
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+/* =========================================================
+   PROFILE PHOTO UPLOAD
+   ========================================================= */
+
+.profile-upload-box {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 20px;
+    background: #fafbff;
+    border: 1px dashed #cfd5e3;
+    border-radius: 13px;
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+}
+
+.profile-upload-box:hover {
+    border-color: #8b8ff5;
+    background: #f7f7ff;
+}
+
+.profile-photo-preview {
+    width: 105px;
+    height: 105px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preview-photo-wrapper {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #eef2ff;
+    border: 3px solid #ffffff;
+    box-shadow: 0 5px 15px rgba(20, 25, 40, 0.12);
+}
+
+.preview-photo-wrapper img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.photo-placeholder {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #eef2ff, #e4e7ff);
+    border: 2px dashed #b7bde0;
+    color: #6b63d9;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.profile-upload-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =========================================================
+   REPEATABLE ITEMS
+   ========================================================= */
+
+.repeatable-container {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.repeat-item {
+    position: relative;
+    padding: 18px;
+    background: #fafbfe;
+    border: 1px solid #e1e5ed;
+    border-radius: 12px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.repeat-item:hover {
+    background: #ffffff;
+    border-color: #cfd5e2;
+    box-shadow: 0 5px 18px rgba(20, 25, 40, 0.045);
+}
+
+.repeat-item-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.entry-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 9px;
+    border-radius: 8px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+/* =========================================================
+   REMOVE ENTRY
+   ========================================================= */
+
+.remove-entry-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 31px;
+    padding: 6px 10px;
+    border: 1px solid #fecaca;
+    border-radius: 7px;
+    background: #fff7f7;
+    color: #dc2626;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.remove-entry-btn:hover {
+    background: #fef2f2;
+    border-color: #fca5a5;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   ADD ENTRY
+   ========================================================= */
+
+.add-entry-btn {
+    width: 100%;
+    margin-top: 14px;
+    padding: 12px 15px;
+    border: 1px dashed #bfc6d7;
+    border-radius: 9px;
+    background: #ffffff;
+    color: #4f46e5;
+    font-size: 12px;
+    font-weight: 750;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.add-entry-btn:hover {
+    background: #f5f6ff;
+    border-color: #8b8ff5;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   TEMPLATE SELECTION
+   ========================================================= */
+
+.template-selection,
+.template-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.template-option {
+    position: relative;
+}
+
+.template-option input[type="radio"],
+.template-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.template-card {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #ffffff;
+    border: 2px solid #e1e5ed;
+    border-radius: 12px;
+    cursor: pointer;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.template-card:hover {
+    border-color: #b9c0d1;
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(20, 25, 40, 0.07);
+}
+
+.template-option input[type="radio"]:checked + .template-card {
+    border-color: #5b55e8;
+    box-shadow:
+        0 0 0 3px rgba(91, 85, 232, 0.10),
+        0 8px 22px rgba(79, 70, 229, 0.10);
+}
+
+.template-card h3 {
+    margin-top: 10px;
+    margin-bottom: 4px;
+    color: #273044;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.template-card p {
+    color: #858c99;
+    font-size: 10px;
+    line-height: 1.45;
+}
+
+.template-card img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+}
+
+/* =========================================================
+   TEMPLATE MINI PREVIEWS
+   ========================================================= */
+
+.template-mini {
+    width: 100%;
+    height: 150px;
+    padding: 14px;
+    background: #ffffff;
+    border: 1px solid #e4e7ed;
+    border-radius: 7px;
+    overflow: hidden;
+    position: relative;
+}
+
+.template-mini::after {
+    content: "";
+    position: absolute;
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    height: 4px;
+    background: #e5e7eb;
+    border-radius: 5px;
+}
+
+/* Professional Mini Preview */
+
+.template-mini-professional {
+    border-top: 5px solid #2563eb;
+}
+
+.template-mini-professional .mini-name {
+    width: 55%;
+    height: 10px;
+    margin-bottom: 7px;
+    background: #172033;
+    border-radius: 3px;
+}
+
+.template-mini-professional .mini-line {
+    width: 75%;
+    height: 4px;
+    margin-bottom: 5px;
+    background: #cfd5df;
+    border-radius: 3px;
+}
+
+.template-mini-professional .mini-heading {
+    width: 32%;
+    height: 6px;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    background: #2563eb;
+    border-radius: 3px;
+}
+
+.template-mini-professional .mini-text {
+    width: 90%;
+    height: 4px;
+    margin-bottom: 4px;
+    background: #dfe3e9;
+    border-radius: 3px;
+}
+
+/* Modern Mini Preview */
+
+.template-mini-modern {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 10px;
+    padding: 0;
+    background: #ffffff;
+    border: 1px solid #ddd6fe;
+}
+
+.template-mini-modern .mini-sidebar {
+    height: 100%;
+    padding: 13px 8px;
+    background: linear-gradient(180deg, #4f46e5, #6366f1);
+}
+
+.template-mini-modern .mini-sidebar-line {
+    width: 75%;
+    height: 5px;
+    margin-bottom: 7px;
+    background: rgba(255, 255, 255, 0.78);
+    border-radius: 3px;
+}
+
+.template-mini-modern .mini-content {
+    padding: 14px 8px;
+}
+
+.template-mini-modern .mini-name {
+    width: 70%;
+    height: 9px;
+    margin-bottom: 7px;
+    background: #4f46e5;
+    border-radius: 3px;
+}
+
+.template-mini-modern .mini-line {
+    width: 90%;
+    height: 4px;
+    margin-bottom: 5px;
+    background: #dfe3e9;
+    border-radius: 3px;
+}
+
+.template-mini-modern .mini-heading {
+    width: 40%;
+    height: 5px;
+    margin-top: 13px;
+    margin-bottom: 6px;
+    background: #6366f1;
+    border-radius: 3px;
+}
+
+/* Creative Mini Preview */
+
+.template-mini-creative {
+    border-top: 5px solid #0f766e;
+}
+
+.template-mini-creative .mini-name {
+    width: 60%;
+    height: 10px;
+    margin-bottom: 7px;
+    background: #0f766e;
+    border-radius: 3px;
+}
+
+.template-mini-creative .mini-line {
+    width: 78%;
+    height: 4px;
+    margin-bottom: 5px;
+    background: #cbd5d8;
+    border-radius: 3px;
+}
+
+.template-mini-creative .mini-heading {
+    width: 35%;
+    height: 6px;
+    margin-top: 15px;
+    margin-bottom: 6px;
+    background: #f59e0b;
+    border-radius: 3px;
+}
+
+.template-mini-creative .mini-text {
+    width: 90%;
+    height: 4px;
+    margin-bottom: 4px;
+    background: #d9e9e7;
+    border-radius: 3px;
+}
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 25px 30px;
+    background: #ffffff;
+    border-top: 1px solid #edf0f4;
+}
+
+.save-resume-btn,
+.preview-resume-btn {
+    min-height: 44px;
+    padding: 11px 20px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.save-resume-btn {
+    border: none;
+    background: linear-gradient(135deg, #5b55e8, #4f8cff);
+    color: #ffffff;
+    box-shadow: 0 6px 16px rgba(79, 70, 229, 0.20);
+}
+
+.save-resume-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 9px 22px rgba(79, 70, 229, 0.26);
+}
+
+.preview-resume-btn {
+    border: 1px solid #dfe3eb;
+    background: #ffffff;
+    color: #4b5563;
+}
+
+.preview-resume-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+    box-shadow: 0 5px 14px rgba(20, 25, 40, 0.06);
+}
+
+/* =========================================================
+   CERTIFICATE SECTION
+   ========================================================= */
+
+.certificate-section {
+    padding: 30px;
+    background: #fbfcff;
+    border-top: 1px solid #e8ebf1;
+}
+
+.certificate-form {
+    padding: 20px;
+    margin-top: 20px;
+    background: #ffffff;
+    border: 1px solid #e2e6ee;
+    border-radius: 13px;
+}
+
+.upload-certificate-btn {
+    margin-top: 4px;
+    padding: 11px 18px;
+    border: none;
+    border-radius: 9px;
+    background: #eef2ff;
+    color: #4f46e5;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.upload-certificate-btn:hover {
+    background: #e2e7ff;
+    transform: translateY(-1px);
+}
+
+/* =========================================================
+   CERTIFICATE UPLOAD PREVIEW
+   ========================================================= */
+
+.certificate-upload-preview {
+    margin-top: 15px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: #f8fafc;
+}
+
+.certificate-upload-preview p {
+    margin-bottom: 10px;
+    color: #334155;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+#certificatePreviewImage {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    height: 190px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+}
+
+/* =========================================================
+   UPLOADED CERTIFICATES
+   ========================================================= */
+
+.uploaded-certificates {
+    margin-top: 28px;
+}
+
+.uploaded-certificates h3 {
+    margin-bottom: 14px;
+    color: #303849;
+    font-size: 15px;
+    font-weight: 750;
+}
+
+.certificate-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.certificate-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #e1e5ec;
+    border-radius: 11px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.certificate-card:hover {
+    border-color: #cfd5e2;
+    box-shadow: 0 5px 16px rgba(20, 25, 40, 0.05);
+}
+
+.certificate-info {
+    min-width: 0;
+}
+
+.certificate-info h4 {
+    margin-bottom: 6px;
+    color: #20283a;
+    font-size: 14px;
+    word-break: break-word;
+}
+
+.certificate-info p {
+    margin-top: 4px;
+    color: #747c8b;
+    font-size: 12px;
+}
+
+.certificate-info strong {
+    color: #4b5563;
+}
+
+.certificate-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+}
+
+.view-certificate-btn,
+.delete-certificate-btn {
+    padding: 8px 11px;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.view-certificate-btn {
+    background: #eef2ff;
+    color: #4f46e5;
+}
+
+.view-certificate-btn:hover {
+    background: #e1e6ff;
+}
+
+.delete-certificate-btn {
+    border: 1px solid #fecaca;
+    background: #fff7f7;
+    color: #dc2626;
+}
+
+.delete-certificate-btn:hover {
+    background: #fef2f2;
+}
+
+.no-certificates {
+    margin-top: 20px;
+    padding: 18px;
+    text-align: center;
+    background: #ffffff;
+    border: 1px dashed #d7dce6;
+    border-radius: 10px;
+    color: #858c99;
+    font-size: 12px;
+}
+
+/* =========================================================
+   RIGHT LIVE PREVIEW CONTAINER
+   ========================================================= */
+
+.builder-preview-container {
+    min-width: 0;
+    position: sticky;
+    top: 96px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    padding: 22px;
+    background: #e9ebf1;
+    border-radius: 18px;
+    scrollbar-width: thin;
+    scrollbar-color: #c4c8d2 transparent;
+}
+
+.builder-preview-container::-webkit-scrollbar {
+    width: 7px;
+}
+
+.builder-preview-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.builder-preview-container::-webkit-scrollbar-thumb {
+    background: #c4c8d2;
+    border-radius: 20px;
+}
+
+/* =========================================================
+   PREVIEW HEADER
+   ========================================================= */
+
+.preview-header,
+.live-preview-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.preview-header h2,
+.live-preview-header h2 {
+    margin: 0 0 4px;
+    color: #172033;
+    font-size: 18px;
+}
+
+.preview-header p {
+    color: #777e8d;
+    font-size: 12px;
+}
+
+.open-preview-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px 13px;
+    border-radius: 8px;
+    background: #4f46e5;
+    border: 1px solid #4f46e5;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    white-space: nowrap;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.open-preview-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+    box-shadow: 0 5px 14px rgba(20, 25, 40, 0.07);
+}
+
+/* =========================================================
+   LIVE RESUME PREVIEW
+   ========================================================= */
+
+#resumePreview {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    word-break: normal;
+    overflow-wrap: break-word;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.resume-paper {
+    width: 100%;
+    max-width: 650px;
+    min-height: 1120px;
+    margin: 0 auto;
+    padding: 42px;
+    background: #ffffff;
+    border-radius: 4px;
+    box-shadow: 0 12px 35px rgba(20, 25, 40, 0.14);
+    color: #1f2937;
+    overflow-wrap: break-word;
+    position: relative;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+.resume-paper h1 {
+    margin: 0;
+    line-height: 1.15;
+}
+
+.resume-paper h2 {
+    margin: 0 0 12px;
+}
+
+.resume-paper p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.resume-paper section {
+    margin-bottom: 25px;
+}
+
+/* =========================================================
+   LIVE HEADER
+   ========================================================= */
+
+#resumePreview .resume-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    min-width: 0;
+    padding-bottom: 22px;
+    margin-bottom: 26px;
+    border-bottom: 2px solid #172033;
+}
+
+#resumePreview .resume-header-info {
+    flex: 1 1 auto;
+    min-width: 0;
+    width: auto;
+    display: block;
+    overflow: visible;
+}
+
+#resumePreview #livePhotoWrapper {
+    width: 105px;
+    min-width: 105px;
+    max-width: 105px;
+    height: 105px;
+    flex: 0 0 105px;
+    order: 2;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    border-radius: 50%;
+    background: #eef2ff;
+    border: 3px solid #ffffff;
+    box-shadow: 0 5px 14px rgba(20, 25, 40, 0.12);
+}
+
+#resumePreview #livePhotoWrapper img,
+#resumePreview #previewPhotoLive {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+}
+
+/* =========================================================
+   LIVE RESUME NAME
+   ========================================================= */
+
+#resumePreview #previewFullname {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 12px;
+    color: #172033;
+    font-size: 31px;
+    line-height: 1.15;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    text-align: left;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+}
+
+/* =========================================================
+   LIVE CONTACT INFORMATION
+   ========================================================= */
+
+#resumePreview #previewEmail,
+#resumePreview #previewPhone,
+#resumePreview #previewAddress {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 5px;
+    color: #606878;
+    font-size: 12px;
+    line-height: 1.5;
+    text-align: left;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+}
+
+/* =========================================================
+   LIVE RESUME SECTIONS
+   ========================================================= */
+
+#resumePreview .resume-preview-section,
+#resumePreview .preview-section {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 23px;
+    min-width: 0;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+#resumePreview .resume-preview-section h3,
+#resumePreview .resume-section-title {
+    margin-bottom: 9px;
+    color: #4f46e5;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+}
+
+#resumePreview .resume-preview-section p {
+    width: 100%;
+    max-width: 100%;
+    color: #444b59;
+    font-size: 12px;
+    line-height: 1.7;
+    white-space: pre-line;
+    word-break: normal;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================================
+   LIVE CERTIFICATES
+   ========================================================= */
+
+#resumePreview .preview-certificates {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+#resumePreview .preview-certificate-item {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    padding: 10px 12px;
+    background: #f8f9fc;
+    border-left: 3px solid #6366f1;
+    border-radius: 5px;
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+
+#resumePreview .preview-certificate-item strong {
+    color: #303849;
+    font-size: 11px;
+    word-break: normal;
+}
+
+#resumePreview .preview-certificate-item span {
+    color: #747c8b;
+    font-size: 10px;
+    word-break: normal;
+}
+
+/* =========================================================
+   CERTIFICATE IMAGE
+   ========================================================= */
+
+.preview-certificate-image {
+    width: 100%;
+    max-width: 260px;
+    margin: 12px auto;
+    text-align: center;
+}
+
+.preview-certificate-image img {
+    display: block;
+    width: 100%;
+    max-width: 260px;
+    height: 170px;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+.certificate-thumbnail {
+    width: 140px;
+    height: 95px;
+    margin: 12px 0;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+}
+
+.certificate-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================================
+   SKILLS
+   ========================================================= */
+
+#resumePreview .preview-skills,
+#resumePreview #previewSkills {
+    width: 100%;
+    max-width: 100%;
+    word-break: normal;
+    overflow-wrap: anywhere;
+}
+
+#resumePreview .preview-skill,
+#resumePreview .skill {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 11px;
+    margin: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: normal;
+    word-break: normal;
+    border-radius: 7px;
+}
+
+/* =========================================================
+   TEMPLATE 1 - PROFESSIONAL
+   ========================================================= */
+
+#resumePreview[data-template="template1"],
+.resume-paper.template1,
+.resume-paper.template-professional {
+    font-family:
+        "Segoe UI",
+        Arial,
+        Helvetica,
+        sans-serif;
+    background: #ffffff;
+    color: #374151;
+    border-top: 5px solid #2563eb;
+}
+
+#resumePreview[data-template="template1"] .resume-header,
+.resume-paper.template1 .resume-header,
+.resume-paper.template-professional .resume-header {
+    border-bottom: 2px solid #2563eb;
+}
+
+#resumePreview[data-template="template1"] #previewFullname,
+.resume-paper.template1 h1,
+.resume-paper.template-professional h1 {
+    color: #172554;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+#resumePreview[data-template="template1"] .resume-preview-section h3,
+.resume-paper.template1 .resume-section-title,
+.resume-paper.template-professional .resume-section-title {
+    color: #2563eb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #dbe4ff;
+    padding-bottom: 6px;
+}
+
+#resumePreview[data-template="template1"] .preview-skill,
+.resume-paper.template1 .skill,
+.resume-paper.template-professional .skill {
+    background: #eef2ff;
+    color: #3730a3;
+    border: 1px solid #c7d2fe;
+    border-radius: 6px;
+}
+
+#resumePreview[data-template="template1"] #livePhotoWrapper,
+.resume-paper.template1 .profile-photo,
+.resume-paper.template-professional .profile-photo {
+    border: 4px solid #2563eb;
+    border-radius: 50%;
+}
+
+#resumePreview[data-template="template1"] .preview-certificate-item {
+    background: #f8fafc;
+    border-left-color: #2563eb;
+}
+
+/* =========================================================
+   TEMPLATE 2 - MODERN
+   ========================================================= */
+
+#resumePreview[data-template="template2"],
+.resume-paper.template2,
+.resume-paper.template-modern {
+    font-family:
+        "Trebuchet MS",
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    background: #ffffff;
+    color: #334155;
+    border-left: 7px solid #4f46e5;
+}
+
+#resumePreview[data-template="template2"] .resume-header,
+.resume-paper.template2 .resume-header,
+.resume-paper.template-modern .resume-header {
+    background: linear-gradient(
+        135deg,
+        #4c1d95,
+        #6366f1
+    );
+    color: #ffffff;
+    padding: 24px;
+    margin-bottom: 28px;
+    border-bottom: none;
+    border-radius: 0 12px 12px 0;
+}
+
+#resumePreview[data-template="template2"] #previewFullname,
+.resume-paper.template2 h1,
+.resume-paper.template-modern h1 {
+    color: #ffffff;
+    font-size: 32px;
+}
+
+#resumePreview[data-template="template2"] #previewEmail,
+#resumePreview[data-template="template2"] #previewPhone,
+#resumePreview[data-template="template2"] #previewAddress {
+    color: #ede9fe;
+}
+
+#resumePreview[data-template="template2"] .resume-preview-section {
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+#resumePreview[data-template="template2"] .resume-preview-section h3,
+.resume-paper.template2 .resume-section-title,
+.resume-paper.template-modern .resume-section-title {
+    color: #6d28d9;
+    font-size: 16px;
+    border-left: 4px solid #7c3aed;
+    padding-left: 10px;
+}
+
+#resumePreview[data-template="template2"] .preview-skill,
+.resume-paper.template2 .skill,
+.resume-paper.template-modern .skill {
+    background: #f5f3ff;
+    color: #6d28d9;
+    border: 1px solid #ddd6fe;
+    border-radius: 20px;
+}
+
+#resumePreview[data-template="template2"] #livePhotoWrapper,
+.resume-paper.template2 .profile-photo,
+.resume-paper.template-modern .profile-photo {
+    border: 4px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.20);
+}
+
+#resumePreview[data-template="template2"] .preview-certificate-item {
+    background: #f5f3ff;
+    border-left-color: #6d28d9;
+}
+
+/* =========================================================
+   TEMPLATE 3 - CREATIVE
+   ========================================================= */
+
+#resumePreview[data-template="template3"],
+.resume-paper.template3,
+.resume-paper.template-creative {
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+    background: #ffffff;
+    color: #403a57;
+    border-left: 8px solid #0f766e;
+}
+
+#resumePreview[data-template="template3"] .resume-header,
+.resume-paper.template3 .resume-header,
+.resume-paper.template-creative .resume-header {
+    background: #f0fdfa;
+    color: #115e59;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-bottom: 3px solid #0f766e;
+    border-radius: 0 0 14px 14px;
+}
+
+#resumePreview[data-template="template3"] #previewFullname,
+.resume-paper.template3 h1,
+.resume-paper.template-creative h1 {
+    color: #115e59;
+    font-size: 32px;
+    letter-spacing: -0.5px;
+}
+
+#resumePreview[data-template="template3"] #previewEmail,
+#resumePreview[data-template="template3"] #previewPhone,
+#resumePreview[data-template="template3"] #previewAddress {
+    color: #3f625f;
+}
+
+#resumePreview[data-template="template3"] .resume-preview-section {
+    margin-bottom: 23px;
+    padding-left: 14px;
+    border-left: 3px solid #14b8a6;
+}
+
+#resumePreview[data-template="template3"] .resume-preview-section h3,
+.resume-paper.template3 .resume-section-title,
+.resume-paper.template-creative .resume-section-title {
+    color: #0f766e;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+}
+
+.resume-paper.template3 .resume-section-title::after,
+.resume-paper.template-creative .resume-section-title::after {
+    content: "";
+    display: block;
+    width: 55px;
+    height: 3px;
+    background: #f97316;
+    margin-top: 5px;
+}
+
+#resumePreview[data-template="template3"] .preview-skill,
+.resume-paper.template3 .skill,
+.resume-paper.template-creative .skill {
+    background: #fff7ed;
+    color: #c2410c;
+    border: 1px solid #fed7aa;
+    border-radius: 20px;
+}
+
+#resumePreview[data-template="template3"] #livePhotoWrapper,
+.resume-paper.template3 .profile-photo,
+.resume-paper.template-creative .profile-photo {
+    width: 110px;
+    min-width: 110px;
+    max-width: 110px;
+    height: 110px;
+    flex-basis: 110px;
+    border-radius: 15px;
+    border: 5px solid #f59e0b;
+}
+
+#resumePreview[data-template="template3"] .preview-certificate-item {
+    background: #f0fdfa;
+    border-left-color: #f59e0b;
+}
+
+/* =========================================================
+   TEMPLATE CONTENT SAFETY
+   ========================================================= */
+
+#resumePreview .resume-content,
+#resumePreview .preview-content,
+#resumePreview .preview-section,
+#resumePreview .resume-preview-section {
+    word-break: normal;
+    overflow-wrap: break-word;
+    min-width: 0;
+}
+
+#resumePreview h1,
+#resumePreview h2,
+#resumePreview h3,
+#resumePreview strong {
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+}
+
+#resumePreview p,
+#resumePreview span,
+#resumePreview div {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* =========================================================
+   ACCESSIBILITY
+   ========================================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid rgba(79, 70, 229, 0.22);
+    outline-offset: 2px;
+}
+
+/* =========================================================
+   DISABLED
+   ========================================================= */
+
+button:disabled,
+input:disabled,
+textarea:disabled,
+select:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+    .builder-page {
+        grid-template-columns: 1fr;
+    }
+
+    .builder-preview-container {
+        position: relative;
+        top: 0;
+        max-height: none;
+        overflow: visible;
+    }
+
+    .resume-paper {
+        max-width: 760px;
+    }
+}
+
+/* =========================================================
+   SMALL TABLET
+   ========================================================= */
+
+@media (max-width: 800px) {
+    .builder-header {
+        padding: 0 18px;
+    }
+
+    .builder-page {
+        padding: 18px;
+        gap: 18px;
+    }
+
+    .builder-title,
+    .form-section,
+    .certificate-section {
+        padding: 24px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .profile-upload-box {
+        align-items: flex-start;
+    }
+
+    .template-selection,
+    .template-options {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .resume-paper {
+        padding: 42px;
+    }
+
+    .resume-paper.template2 .resume-header,
+    .resume-paper.template-modern .resume-header {
+        padding: 28px;
+    }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+    .builder-header {
+        height: 64px;
+        padding: 0 14px;
+    }
+
+    .brand-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 9px;
+        font-size: 16px;
+    }
+
+    .brand-name {
+        font-size: 18px;
+    }
+
+    .builder-header-actions {
+        gap: 6px;
+    }
+
+    .preview-btn,
+    .back-btn {
+        padding: 8px 10px;
+        font-size: 11px;
+    }
+
+    .builder-page {
+        padding: 10px;
+        gap: 14px;
+    }
+
+    .builder-form-container {
+        border-radius: 14px;
+    }
+
+    .builder-title {
+        padding: 21px;
+    }
+
+    .builder-title h1 {
+        font-size: 23px;
+    }
+
+    .builder-title p {
+        font-size: 12px;
+    }
+
+    .form-section,
+    .certificate-section {
+        padding: 21px;
+    }
+
+    .section-heading h2 {
+        font-size: 17px;
+    }
+
+    .section-heading p {
+        font-size: 12px;
+    }
+
+    .profile-upload-box {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .profile-upload-content {
+        width: 100%;
+    }
+
+    .repeat-item {
+        padding: 15px;
+    }
+
+    .template-selection,
+    .template-options {
+        grid-template-columns: 1fr;
+    }
+
+    .template-mini {
+        height: 135px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .save-resume-btn,
+    .preview-resume-btn {
+        width: 100%;
+    }
+
+    .certificate-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .certificate-actions {
+        width: 100%;
+    }
+
+    .view-certificate-btn,
+    .delete-certificate-btn {
+        flex: 1;
+        text-align: center;
+    }
+
+    .builder-preview-container {
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    .preview-header,
+    .live-preview-header {
+        align-items: flex-start;
+    }
+
+    .open-preview-btn {
+        padding: 8px 9px;
+        font-size: 10px;
+    }
+
+    .resume-paper {
+        min-height: 700px;
+        padding: 28px;
+    }
+
+    #resumePreview .resume-header {
+        gap: 14px;
+    }
+
+    #resumePreview #livePhotoWrapper {
+        width: 78px;
+        min-width: 78px;
+        max-width: 78px;
+        height: 78px;
+        flex-basis: 78px;
+    }
+
+    #resumePreview #previewFullname {
+        font-size: 24px;
+    }
+
+    #resumePreview #previewEmail,
+    #resumePreview #previewPhone,
+    #resumePreview #previewAddress {
+        font-size: 10px;
+    }
+
+    #resumePreview .resume-preview-section {
+        margin-bottom: 18px;
+    }
+
+    #resumePreview .resume-preview-section h3 {
+        font-size: 10px;
+    }
+
+    #resumePreview .resume-preview-section p {
+        font-size: 10.5px;
+        line-height: 1.65;
+    }
+
+    .preview-certificate-image {
+        max-width: 320px;
+    }
+
+    .preview-certificate-image img {
+        max-width: 320px;
+        height: 210px;
+    }
+
+    #certificatePreviewImage {
+        max-width: 340px;
+        height: 220px;
+    }
+
+    .resume-paper.template2 .resume-content,
+    .resume-paper.template-modern .resume-content {
+        padding: 28px;
+    }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+    .brand-name {
+        font-size: 16px;
+    }
+
+    .preview-btn {
+        display: none;
+    }
+
+    .builder-page {
+        padding: 7px;
+    }
+
+    .builder-title,
+    .form-section,
+    .certificate-section {
+        padding: 18px;
+    }
+
+    input,
+    textarea,
+    select {
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .repeat-item {
+        padding: 13px;
+    }
+
+    .resume-paper {
+        padding: 21px;
+    }
+
+    #resumePreview .resume-header {
+        gap: 10px;
+    }
+
+    #resumePreview #previewFullname {
+        font-size: 21px;
+    }
+
+    #resumePreview #livePhotoWrapper {
+        width: 65px;
+        min-width: 65px;
+        max-width: 65px;
+        height: 65px;
+        flex-basis: 65px;
+    }
+
+    #resumePreview .resume-preview-section p {
+        font-size: 10px;
+    }
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+@media print {
+    html,
+    body {
+        background: #ffffff;
+    }
+
+    .builder-header,
+    .builder-form-container,
+    .preview-header,
+    .live-preview-header,
+    .flash-container {
+        display: none !important;
+    }
+
+    .builder-page {
+        display: block;
+        max-width: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .builder-preview-container {
+        position: static;
+        max-height: none;
+        padding: 0;
+        background: #ffffff;
+        overflow: visible;
+    }
+
+    .resume-paper {
+        max-width: none;
+        min-height: auto;
+        margin: 0;
+        box-shadow: none;
+    }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition: none !important;
+        animation: none !important;
+    }
+}

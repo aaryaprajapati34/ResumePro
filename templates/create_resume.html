@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Resume | ResumePro</title>
+
+
+    <!-- ResumePro Favicon -->
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="{{ url_for('static', filename='images/logo.png') }}"
+    >
+
+
+    <!-- Main CSS -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/style.css') }}"
+    >
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(
+                    circle at top left,
+                    rgba(99, 102, 241, 0.10),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at bottom right,
+                    rgba(59, 130, 246, 0.10),
+                    transparent 35%
+                ),
+                #f5f7fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 30px 18px;
+        }
+
+        /* =========================================
+           MAIN CARD
+        ========================================= */
+
+        .create-container {
+            width: 100%;
+            max-width: 560px;
+            background: rgba(255, 255, 255, 0.97);
+            padding: 42px;
+            border-radius: 22px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow:
+                0 25px 60px rgba(15, 23, 42, 0.10),
+                0 8px 20px rgba(79, 70, 229, 0.05);
+            animation: cardEnter 0.5s ease;
+        }
+
+
+        @keyframes cardEnter {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 28px;
+        }
+
+        .logo-wrapper img {
+
+            width: 210px;
+
+            max-width: 100%;
+
+            height: auto;
+
+            display: block;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+           HEADING
+        ========================================= */
+
+        h1 {
+
+            margin: 0 0 10px;
+
+            color: #172033;
+
+            font-size: 30px;
+
+            line-height: 1.2;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+
+        }
+
+
+        .subtitle {
+
+            color: #6b7280;
+
+            margin: 0 0 30px;
+
+            line-height: 1.65;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================================
+           FLASH MESSAGE
+        ========================================= */
+
+        .flash {
+
+            padding: 13px 15px;
+
+            border-radius: 10px;
+
+            margin-bottom: 22px;
+
+            background: #fee2e2;
+
+            color: #991b1b;
+
+            border: 1px solid #fecaca;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-group {
+
+            margin-bottom: 6px;
+
+        }
+
+
+        label {
+
+            display: block;
+
+            margin-bottom: 9px;
+
+            font-weight: 700;
+
+            color: #374151;
+
+            font-size: 14px;
+
+        }
+
+
+        .input-wrapper {
+
+            position: relative;
+
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 15px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: #8b93a7;
+
+            font-size: 17px;
+
+            pointer-events: none;
+
+        }
+
+
+        input {
+
+            width: 100%;
+
+            padding: 15px 15px 15px 44px;
+
+            border: 1px solid #d9deea;
+
+            border-radius: 11px;
+
+            background: #ffffff;
+
+            color: #172033;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition:
+                border-color 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+
+        }
+
+
+        input::placeholder {
+
+            color: #9ca3af;
+
+        }
+
+
+        input:hover {
+
+            border-color: #c4cad8;
+
+        }
+
+
+        input:focus {
+
+            border-color: #4f46e5;
+
+            background: #fff;
+
+            box-shadow:
+                0 0 0 4px rgba(79, 70, 229, 0.10);
+
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .buttons {
+
+            display: flex;
+
+            gap: 12px;
+
+            margin-top: 25px;
+
+        }
+
+
+        button,
+        .cancel-btn {
+
+            flex: 1;
+
+            min-height: 50px;
+
+            padding: 14px 18px;
+
+            border-radius: 11px;
+
+            font-size: 15px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                background 0.2s ease;
+
+        }
+
+
+        /* =========================================
+           CREATE BUTTON
+        ========================================= */
+
+        button {
+
+            border: none;
+
+            background: linear-gradient(
+                135deg,
+                #4f46e5,
+                #6366f1
+            );
+
+            color: white;
+
+            box-shadow:
+                0 8px 18px rgba(79, 70, 229, 0.22);
+
+        }
+
+
+        button:hover {
+
+            background: linear-gradient(
+                135deg,
+                #4338ca,
+                #4f46e5
+            );
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 24px rgba(79, 70, 229, 0.28);
+
+        }
+
+
+        button:active {
+
+            transform: translateY(0);
+
+        }
+
+
+        /* =========================================
+           CANCEL BUTTON
+        ========================================= */
+
+        .cancel-btn {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border: 1px solid #d9deea;
+
+            color: #4b5563;
+
+            background: #ffffff;
+
+        }
+
+
+        .cancel-btn:hover {
+
+            background: #f8fafc;
+
+            border-color: #cbd5e1;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           HELPER TEXT
+        ========================================= */
+
+        .helper-text {
+
+            margin-top: 10px;
+
+            color: #9ca3af;
+
+            font-size: 12px;
+
+            line-height: 1.5;
+
+        }
+
+
+        /* =========================================
+           BOTTOM TEXT
+        ========================================= */
+
+        .bottom-text {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            color: #9ca3af;
+
+            font-size: 12px;
+
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            body {
+
+                padding: 20px 14px;
+
+            }
+
+
+            .create-container {
+
+                padding: 32px 22px;
+
+                border-radius: 18px;
+
+            }
+
+
+            .logo-wrapper {
+
+                margin-bottom: 24px;
+
+            }
+
+
+            .logo-wrapper img {
+
+                width: 180px;
+
+            }
+
+
+            h1 {
+
+                font-size: 26px;
+
+            }
+
+
+            .subtitle {
+
+                font-size: 14px;
+
+            }
+
+
+            .buttons {
+
+                flex-direction: column;
+
+            }
+
+
+            button,
+            .cancel-btn {
+
+                width: 100%;
+
+            }
+
+        }
+
+
+        @media (max-width: 380px) {
+
+            .create-container {
+
+                padding: 27px 18px;
+
+            }
+
+
+            .logo-wrapper img {
+
+                width: 165px;
+
+            }
+
+
+            h1 {
+
+                font-size: 24px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="create-container">
+
+
+    <!-- ResumePro Logo -->
+
+    <div class="logo-wrapper">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="ResumePro"
+        >
+
+    </div>
+
+
+    <!-- Heading -->
+
+    <h1>Create a New Resume</h1>
+
+    <p class="subtitle">
+
+        Give your resume a name to get started. You can add your
+        personal details, education, skills, experience and projects next.
+
+    </p>
+
+
+    <!-- Flash Messages -->
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+
+        {% if messages %}
+
+            {% for category, message in messages %}
+
+                <div class="flash">
+
+                    {{ message }}
+
+                </div>
+
+            {% endfor %}
+
+        {% endif %}
+
+    {% endwith %}
+
+
+    <!-- Create Resume Form -->
+
+    <form
+        method="POST"
+        action="{{ url_for('resume.create') }}"
+    >
+
+
+        <!-- Selected Template -->
+
+        <input
+            type="hidden"
+            name="selected_template"
+            value="{{ selected_template }}"
+        >
+
+
+        <!-- Resume Name -->
+
+        <div class="form-group">
+
+            <label for="resume_name">
+
+                Resume Name
+
+            </label>
+
+
+            <div class="input-wrapper">
+
+                <span class="input-icon">📄</span>
+
+
+                <input
+                    type="text"
+                    id="resume_name"
+                    name="resume_name"
+                    placeholder="e.g. Software Developer Resume"
+                    maxlength="100"
+                    autocomplete="off"
+                    required
+                >
+
+            </div>
+
+
+            <div class="helper-text">
+
+                Choose a name that helps you identify this resume later.
+
+            </div>
+
+        </div>
+
+
+        <!-- Buttons -->
+
+        <div class="buttons">
+
+
+            <a
+                href="{{ url_for('dashboard') }}"
+                class="cancel-btn"
+            >
+
+                Cancel
+
+            </a>
+
+
+            <button type="submit">
+
+                Create Resume
+
+            </button>
+
+
+        </div>
+
+    </form>
+
+
+    <!-- Bottom Text -->
+
+    <div class="bottom-text">
+
+        Build Your Resume. Land Your Dream Job.
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>
+

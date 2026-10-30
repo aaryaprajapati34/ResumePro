@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+   content="width=device-width, initial-scale=1.0">
+
+<title>ResumePro - Build Your Professional Resume</title>
+
+<!-- ResumePro Favicon -->
+
+<link rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/logo.png') }}">
+
+<!-- Main Stylesheet -->
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<!-- =====================================================
+     NAVBAR
+====================================================== -->
+
+<header class="navbar">
+
+
+<!-- Logo -->
+
+<a href="{{ url_for('home') }}"
+   class="logo-link"
+   aria-label="ResumePro Home">
+
+    <img
+        src="{{ url_for('static', filename='images/logo.png') }}"
+        alt="ResumePro"
+        class="navbar-logo">
+
+</a>
+
+
+<!-- Navigation -->
+
+<nav>
+
+    <a href="{{ url_for('home') }}">
+        Home
+    </a>
+
+    <a href="#templates">
+        Templates
+    </a>
+
+    <a href="{{ url_for('about') }}">
+        About Us
+    </a>
+
+    <a href="{{ url_for('contact') }}">
+        Contact Us
+    </a>
+
+    <a href="{{ url_for('auth.login') }}">
+        Login
+    </a>
+
+    <a href="{{ url_for('auth.signup') }}"
+       class="signup-btn">
+
+        Get Started
+
+    </a>
+
+</nav>
+
+
+</header>
+
+<!-- =====================================================
+     HERO SECTION
+====================================================== -->
+
+<section class="hero">
+
+
+<div class="hero-content">
+
+
+    <!-- Badge -->
+
+    <div class="badge">
+
+        ✦ Professional Resume Builder
+
+    </div>
+
+
+    <!-- Main Heading -->
+
+    <h1>
+
+        Build a Resume That
+        <span>Gets You Noticed.</span>
+
+    </h1>
+
+
+    <!-- Description -->
+
+    <p>
+
+        Create a professional, modern and job-ready resume
+        in minutes with ResumePro.
+
+    </p>
+
+
+    <!-- Official Tagline -->
+
+    <div class="hero-tagline">
+
+        Build Your Resume. Land Your Dream Job.
+
+    </div>
+
+
+    <!-- Hero Buttons -->
+
+    <div class="hero-buttons">
+
+
+        <a href="{{ url_for('auth.signup') }}"
+           class="primary-btn">
+
+            Create My Resume →
+
+        </a>
+
+
+        <a href="#templates"
+           class="secondary-btn">
+
+            Explore Templates
+
+        </a>
+
+
+    </div>
+
+
+    <!-- Trust Points -->
+
+    <div class="trust">
+
+        <span>✓ Easy to use</span>
+
+        <span>✓ Professional templates</span>
+
+        <span>✓ Download as PDF</span>
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =================================================
+     RESUME PREVIEW
+================================================== -->
+
+<div class="resume-preview">
+
+
+    <div class="resume-paper">
+
+
+        <!-- Resume Header -->
+
+        <div class="resume-top">
+
+
+            <div>
+
+                <h2>
+                    YOUR NAME
+                </h2>
+
+                <p>
+                    Computer Science Student
+                </p>
+
+            </div>
+
+
+            <div class="profile-circle">
+
+                YN
+
+            </div>
+
+
+        </div>
+
+
+        <!-- Contact -->
+
+        <div class="resume-contact">
+
+            Mumbai, India • your@email.com • +91 XXXXX XXXXX
+
+        </div>
+
+
+        <!-- Profile -->
+
+        <div class="resume-section">
+
+            <h3>
+                PROFILE
+            </h3>
+
+            <p>
+
+                Motivated professional with an interest in
+                software development and modern web technologies.
+
+            </p>
+
+        </div>
+
+
+        <!-- Education -->
+
+        <div class="resume-section">
+
+            <h3>
+                EDUCATION
+            </h3>
+
+            <p>
+
+                <strong>
+                    Bachelor of Computer Science
+                </strong>
+
+            </p>
+
+            <small>
+
+                University | 2024 - 2027
+
+            </small>
+
+        </div>
+
+
+        <!-- Skills -->
+
+        <div class="resume-section">
+
+            <h3>
+                SKILLS
+            </h3>
+
+
+            <div class="skills">
+
+                <span>Python</span>
+                <span>HTML</span>
+                <span>CSS</span>
+                <span>JavaScript</span>
+                <span>MySQL</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Projects -->
+
+        <div class="resume-section">
+
+            <h3>
+                PROJECTS
+            </h3>
+
+            <p>
+
+                <strong>
+                    Professional Web Project
+                </strong>
+
+            </p>
+
+            <small>
+
+                Modern web application built using
+                contemporary technologies.
+
+            </small>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     FEATURES
+====================================================== -->
+
+<section class="features"
+         id="features">
+
+
+<div class="section-heading">
+
+
+    <p class="small-title">
+
+        POWERFUL FEATURES
+
+    </p>
+
+
+    <h2>
+
+        Everything You Need to
+        <span>Build Your Resume</span>
+
+    </h2>
+
+
+    <p>
+
+        Simple tools designed to help you create a professional
+        resume without the hassle.
+
+    </p>
+
+</div>
+
+
+
+<!-- Feature Cards -->
+
+<div class="feature-grid">
+
+
+    <!-- Feature 1 -->
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+
+            ✦
+
+        </div>
+
+        <h3>
+
+            Easy Resume Builder
+
+        </h3>
+
+        <p>
+
+            Enter your information step-by-step and create
+            your resume easily.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- Feature 2 -->
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+
+            ◈
+
+        </div>
+
+        <h3>
+
+            Professional Templates
+
+        </h3>
+
+        <p>
+
+            Choose from modern and professional resume
+            templates.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- Feature 3 -->
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+
+            ⚡
+
+        </div>
+
+        <h3>
+
+            Live Preview
+
+        </h3>
+
+        <p>
+
+            See your resume update instantly while you
+            enter your information.
+
+        </p>
+
+    </div>
+
+
+
+    <!-- Feature 4 -->
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+
+            ↓
+
+        </div>
+
+        <h3>
+
+            Download as PDF
+
+        </h3>
+
+        <p>
+
+            Download your completed resume as a
+            professional PDF.
+
+        </p>
+
+    </div>
+
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     TEMPLATES
+====================================================== -->
+
+<section class="templates-section"
+         id="templates">
+
+
+<div class="section-heading">
+
+
+    <p class="small-title">
+
+        RESUME TEMPLATES
+
+    </p>
+
+
+    <h2>
+
+        Start With a
+        <span>Professional Design</span>
+
+    </h2>
+
+
+    <p>
+
+        Choose a template and customize it according to
+        your career and personality.
+
+    </p>
+
+</div>
+
+
+
+<!-- Template Grid -->
+
+<div class="template-grid">
+
+
+    <!-- =================================================
+         MODERN TEMPLATE
+    ================================================== -->
+
+    <div class="template-card">
+
+
+        <div class="template-demo modern-template">
+
+            <div class="demo-name">
+
+                YOUR NAME
+
+            </div>
+
+            <div class="demo-line"></div>
+
+            <div class="demo-lines"></div>
+
+            <div class="demo-lines short"></div>
+
+        </div>
+
+
+        <h3>
+
+            Modern
+
+        </h3>
+
+
+        <p>
+
+            Clean and contemporary
+
+        </p>
+
+
+        <!-- IMPORTANT:
+             Modern = template2 -->
+
+        <a href="{{ url_for('auth.signup') }}?template=template2"
+           class="template-btn">
+
+            Select Template
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         PROFESSIONAL TEMPLATE
+    ================================================== -->
+
+    <div class="template-card">
+
+
+        <div class="template-demo classic-template">
+
+            <div class="demo-name">
+
+                YOUR NAME
+
+            </div>
+
+            <div class="demo-line"></div>
+
+            <div class="demo-lines"></div>
+
+            <div class="demo-lines short"></div>
+
+        </div>
+
+
+        <h3>
+
+            Professional
+
+        </h3>
+
+
+        <p>
+
+            Professional and polished
+
+        </p>
+
+
+        <!-- IMPORTANT:
+             Professional = template1 -->
+
+        <a href="{{ url_for('auth.signup') }}?template=template1"
+           class="template-btn">
+
+            Select Template
+
+        </a>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         CREATIVE TEMPLATE
+    ================================================== -->
+
+    <div class="template-card">
+
+
+        <div class="template-demo minimal-template">
+
+            <div class="demo-name">
+
+                YOUR NAME
+
+            </div>
+
+            <div class="demo-line"></div>
+
+            <div class="demo-lines"></div>
+
+            <div class="demo-lines short"></div>
+
+        </div>
+
+
+        <h3>
+
+            Creative
+
+        </h3>
+
+
+        <p>
+
+            Creative and distinctive
+
+        </p>
+
+
+        <!-- IMPORTANT:
+             Creative = template3 -->
+
+        <a href="{{ url_for('auth.signup') }}?template=template3"
+           class="template-btn">
+
+            Select Template
+
+        </a>
+
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     CALL TO ACTION
+====================================================== -->
+
+<section class="cta">
+
+
+<p class="cta-label">
+
+    READY TO GET STARTED?
+
+</p>
+
+
+<h2>
+
+    Ready to Build Your Resume?
+
+</h2>
+
+
+<p>
+
+    Create your professional resume today and take
+    the next step toward your career.
+
+</p>
+
+
+<a href="{{ url_for('auth.signup') }}"
+   class="primary-btn">
+
+    Create My Resume →
+
+</a>
+```
+
+</section>
+
+<!-- =====================================================
+     FOOTER
+====================================================== -->
+
+<footer>
+
+
+<!-- Footer Logo -->
+
+<div class="footer-logo">
+
+    <img
+        src="{{ url_for('static', filename='images/logo.png') }}"
+        alt="ResumePro">
+
+</div>
+
+
+<p>
+
+    Build Your Resume. Land Your Dream Job.
+
+</p>
+
+
+<div class="footer-links">
+
+    <a href="{{ url_for('home') }}">
+        Home
+    </a>
+
+    <a href="{{ url_for('about') }}">
+        About Us
+    </a>
+
+    <a href="{{ url_for('contact') }}">
+        Contact Us
+    </a>
+
+</div>
+
+
+<p class="copyright">
+
+    © 2026 ResumePro. All rights reserved.
+
+</p>
+
+
+</footer>
+
+<!-- =====================================================
+     JAVASCRIPT
+====================================================== -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+</body>
+
+</html>

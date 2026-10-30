@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ certificate["certificate_name"] or "Certificate" }} | ResumePro</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo.png') }}">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f1f5f9;
+            color: #0f172a;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 16px 5%;
+            background: #fff;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .brand { display: flex; align-items: center; gap: 10px; font-size: 21px; font-weight: 700; color: #0f172a; }
+        .brand img { width: 32px; height: 32px; object-fit: contain; }
+        .topbar a, .actions a { text-decoration: none; }
+        .back-link { color: #2563eb; font-weight: 600; font-size: 14px; }
+        .page { width: min(1000px, 92%); margin: 32px auto; }
+        .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 16px; padding: clamp(18px, 3vw, 32px); box-shadow: 0 8px 30px rgba(15, 23, 42, .06); }
+        h1 { margin: 0 0 18px; font-size: clamp(22px, 3vw, 30px); overflow-wrap: anywhere; }
+        .meta { display: flex; flex-wrap: wrap; gap: 10px 24px; color: #475569; font-size: 14px; margin-bottom: 22px; }
+        .certificate-frame { display: flex; align-items: center; justify-content: center; padding: 12px; min-height: 220px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; }
+        .certificate-image { display: block; max-width: 100%; max-height: 75vh; width: auto; height: auto; object-fit: contain; }
+        .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px; }
+        .button { display: inline-flex; align-items: center; justify-content: center; padding: 11px 16px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+        .primary { background: #2563eb; color: #fff; }
+        .secondary { border: 1px solid #cbd5e1; color: #334155; background: #fff; }
+        @media (max-width: 520px) { .topbar { padding: 14px 4%; } .brand { font-size: 18px; } .page { margin: 18px auto; } .meta { flex-direction: column; gap: 8px; } }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="ResumePro logo">
+            <span>ResumePro</span>
+        </div>
+        <a class="back-link" href="{{ url_for('resume.preview', resumeid=resume['resumeid']) }}">Back to Resume</a>
+    </header>
+
+    <main class="page">
+        <section class="card">
+            <h1>{{ certificate["certificate_name"] or "Certificate" }}</h1>
+            <div class="meta">
+                {% if certificate["issuing_organization"] %}<span><strong>Issued by:</strong> {{ certificate["issuing_organization"] }}</span>{% endif %}
+                {% if certificate["certificate_date"] %}<span><strong>Date:</strong> {{ certificate["certificate_date"] }}</span>{% endif %}
+                <span><strong>Resume:</strong> {{ resume["resume_name"] or resume["fullname"] or "My Resume" }}</span>
+            </div>
+            <div class="certificate-frame">
+                <img class="certificate-image" src="{{ url_for('uploaded_file', filename=certificate['file_path']) }}" alt="{{ certificate['certificate_name'] or 'Uploaded certificate' }}">
+            </div>
+            <div class="actions">
+                <a class="button primary" href="{{ url_for('uploaded_file', filename=certificate['file_path']) }}" target="_blank" rel="noopener noreferrer">Open Original Image</a>
+                <a class="button secondary" href="{{ url_for('resume.preview', resumeid=resume['resumeid']) }}">Back to Resume</a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
